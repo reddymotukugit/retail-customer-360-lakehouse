@@ -1,0 +1,210 @@
+<mxfile host="app.diagrams.net" modified="2026-05-12T00:00:00.000Z" agent="Claude" version="21.0.0" type="github">
+  <diagram name="Retail Lakehouse Architecture" id="retail-lakehouse-arch">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- TITLE -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="title" value="Retail Customer 360 &amp; Demand Forecasting — Azure Lakehouse Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- ZONE: ON-PREMISES -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="zone_onprem" value="On-Premises" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="480" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sql_server" value="&lt;b&gt;SQL Server 2022&lt;/b&gt;&lt;br&gt;Express · VM 20.62.125.63&lt;br&gt;transactions · customers · products" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="zone_onprem">
+          <mxGeometry x="20" y="45" width="180" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="shir" value="&lt;b&gt;Self-Hosted IR&lt;/b&gt;&lt;br&gt;Bridges ADF to on-prem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_onprem">
+          <mxGeometry x="270" y="45" width="180" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_sql_shir" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="sql_server" target="shir" parent="zone_onprem">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- ZONE: AZURE DATA FACTORY -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="zone_adf" value="Azure Data Factory" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#0078d4;fontColor=#0078d4;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="260" width="480" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adf_tx" value="&lt;b&gt;pl_ingest_transactions&lt;/b&gt;&lt;br&gt;Watermark incremental · 94s · 1M rows" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="zone_adf">
+          <mxGeometry x="20" y="40" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adf_cust" value="&lt;b&gt;pl_ingest_customers&lt;/b&gt;&lt;br&gt;Full daily refresh · 37s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="zone_adf">
+          <mxGeometry x="140" y="40" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adf_prod" value="&lt;b&gt;pl_ingest_products&lt;/b&gt;&lt;br&gt;Full daily refresh · 36s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="zone_adf">
+          <mxGeometry x="300" y="40" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- SHIR → ADF -->
+        <mxCell id="e_shir_adf" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;dashed=1;fontSize=9;" edge="1" source="shir" target="zone_adf" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- ZONE: ADLS GEN2 -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="zone_adls" value="ADLS Gen2 — stretaillhdev" style="swimlane;startSize=30;fillColor=#d5e8d4;strokeColor=#107c10;fontColor=#107c10;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="480" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adls_bronze" value="&lt;b&gt;bronze/&lt;/b&gt;&lt;br&gt;Raw Parquet landing zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="zone_adls">
+          <mxGeometry x="20" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adls_delta" value="&lt;b&gt;Delta Lake&lt;/b&gt;&lt;br&gt;silver · gold managed by UC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="zone_adls">
+          <mxGeometry x="200" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="kv" value="&lt;b&gt;Key Vault&lt;/b&gt;&lt;br&gt;kv-retaillh-dev&lt;br&gt;storage key · SQL pwd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="zone_adls">
+          <mxGeometry x="340" y="35" width="120" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ADF → ADLS -->
+        <mxCell id="e_adf_adls" value="Parquet" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;" edge="1" source="zone_adf" target="adls_bronze" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- ZONE: DATABRICKS -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="zone_dbx" value="Azure Databricks — Unity Catalog: retail_prod" style="swimlane;startSize=30;fillColor=#e8d5f5;strokeColor=#6366f1;fontColor=#6366f1;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="900" height="660" as="geometry" />
+        </mxCell>
+
+        <!-- Auto Loader -->
+        <mxCell id="autoloader" value="&lt;b&gt;Auto Loader&lt;/b&gt;&lt;br&gt;cloudFiles stream&lt;br&gt;Detects new Parquet files" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="zone_dbx">
+          <mxGeometry x="20" y="50" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Bronze Layer -->
+        <mxCell id="zone_bronze" value="Bronze Layer" style="swimlane;startSize=25;fillColor=#ffe6cc;strokeColor=#b45309;fontColor=#b45309;fontStyle=1;fontSize=10;" vertex="1" parent="zone_dbx">
+          <mxGeometry x="220" y="40" width="640" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="b_tx" value="raw_transactions&lt;br&gt;append-only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_bronze">
+          <mxGeometry x="20" y="35" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b_cust" value="raw_customers&lt;br&gt;append-only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_bronze">
+          <mxGeometry x="175" y="35" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b_prod" value="raw_products&lt;br&gt;append-only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_bronze">
+          <mxGeometry x="330" y="35" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b_quar" value="_quarantine_*&lt;br&gt;bad rows isolated" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="zone_bronze">
+          <mxGeometry x="490" y="35" width="130" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Silver Layer -->
+        <mxCell id="zone_silver" value="Silver Layer" style="swimlane;startSize=25;fillColor=#f1f5f9;strokeColor=#475569;fontColor=#475569;fontStyle=1;fontSize=10;" vertex="1" parent="zone_dbx">
+          <mxGeometry x="220" y="200" width="640" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s_tx" value="transactions&lt;br&gt;line_total · cancel flag&lt;br&gt;quality expectations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;fontSize=10;" vertex="1" parent="zone_silver">
+          <mxGeometry x="20" y="30" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s_cust" value="customers&lt;br&gt;email validation&lt;br&gt;deduplication · SCD1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;fontSize=10;" vertex="1" parent="zone_silver">
+          <mxGeometry x="220" y="30" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s_prod" value="products&lt;br&gt;slow-mover flag&lt;br&gt;orphaned SKU detection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;fontSize=10;" vertex="1" parent="zone_silver">
+          <mxGeometry x="420" y="30" width="160" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Gold Layer -->
+        <mxCell id="zone_gold" value="Gold Layer" style="swimlane;startSize=25;fillColor=#fef9c3;strokeColor=#b7791f;fontColor=#92400e;fontStyle=1;fontSize=10;" vertex="1" parent="zone_dbx">
+          <mxGeometry x="220" y="370" width="640" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g_360" value="customer_360&lt;br&gt;RFM scores&lt;br&gt;per customer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_gold">
+          <mxGeometry x="20" y="30" width="150" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="g_kpi" value="daily_kpis&lt;br&gt;revenue · AOV&lt;br&gt;cancellation rate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_gold">
+          <mxGeometry x="215" y="30" width="150" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="g_forecast" value="demand_forecast&lt;br&gt;Prophet output&lt;br&gt;12-week horizon" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone_gold">
+          <mxGeometry x="410" y="30" width="150" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ML Layer -->
+        <mxCell id="zone_ml" value="ML Jobs (Weekly Retrain — Serverless Compute)" style="swimlane;startSize=25;fillColor=#f3e8ff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=10;" vertex="1" parent="zone_dbx">
+          <mxGeometry x="220" y="540" width="640" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ml_seg" value="segmentation.py&lt;br&gt;K-Means · K=4&lt;br&gt;Champions · Loyal · At Risk · Lost" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8ff;strokeColor=#9f7aea;fontSize=10;" vertex="1" parent="zone_ml">
+          <mxGeometry x="20" y="28" width="175" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ml_fc" value="demand_forecast.py&lt;br&gt;Prophet · top 50 SKUs&lt;br&gt;MAE + MAPE → MLflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8ff;strokeColor=#9f7aea;fontSize=10;" vertex="1" parent="zone_ml">
+          <mxGeometry x="230" y="28" width="175" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ml_val" value="model_validation.py&lt;br&gt;Threshold check&lt;br&gt;→ @champion alias (UC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontSize=10;fontStyle=1;" vertex="1" parent="zone_ml">
+          <mxGeometry x="440" y="28" width="175" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Internal Databricks edges -->
+        <mxCell id="e_al_b" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="autoloader" target="zone_bronze" parent="zone_dbx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_s" value="Lakeflow" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;" edge="1" source="zone_bronze" target="zone_silver" parent="zone_dbx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s_g" value="Lakeflow" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;" edge="1" source="zone_silver" target="zone_gold" parent="zone_dbx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_g_ml" value="weekly trigger" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;" edge="1" source="zone_gold" target="zone_ml" parent="zone_dbx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ADLS → AutoLoader -->
+        <mxCell id="e_adls_al" value="Auto Loader stream" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="adls_bronze" target="autoloader" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- ZONE: SERVING -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="zone_serve" value="Serving" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#0891b2;fontColor=#0891b2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="650" width="480" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dbsql" value="&lt;b&gt;Databricks SQL&lt;/b&gt;&lt;br&gt;Serverless warehouse&lt;br&gt;Direct query on Delta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="zone_serve">
+          <mxGeometry x="20" y="40" width="160" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pbi" value="&lt;b&gt;Power BI&lt;/b&gt;&lt;br&gt;DirectQuery&lt;br&gt;customer_360 · daily_kpis&lt;br&gt;demand_forecast" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="zone_serve">
+          <mxGeometry x="280" y="35" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_dbsql_pbi" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="dbsql" target="pbi" parent="zone_serve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Gold → Databricks SQL -->
+        <mxCell id="e_gold_sql" value="SQL endpoint" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;dashed=1;" edge="1" source="zone_dbx" target="dbsql" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- CI/CD BANNER -->
+        <!-- ══════════════════════════════════════════ -->
+        <mxCell id="cicd" value="&lt;b&gt;CI / CD&lt;/b&gt;  —  GitHub Actions + Databricks Declarative Automation Bundles + Terraform&lt;br&gt;PR → terraform plan  ·  Merge → terraform apply  ·  Push → bundle deploy (dev)  ·  Tag → promote (prod)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#334155;fontColor=#e2e8f0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="790" width="1470" height="55" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

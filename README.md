@@ -8,52 +8,65 @@ Azure data engineering project that ingests retail transaction data, processes i
 
 ## Architecture
 
-```
-SQL Server 2022 (on-prem VM)
-    │
-    │  Self-Hosted Integration Runtime
-    ▼
-Azure Data Factory
-    ├── pl_ingest_transactions  (watermark-based incremental, ~1M rows)
-    ├── pl_ingest_customers     (full daily refresh)
-    └── pl_ingest_products      (full daily refresh)
-    │
-    │  Parquet → ADLS Gen2  (bronze container)
-    ▼
-Databricks — Auto Loader
-    │  Streams new Parquet files into Delta Lake as they land
-    ▼
-Lakeflow Declarative Pipeline
-    ├── Bronze   raw_transactions · raw_customers · raw_products
-    │              (append-only, schema enforcement, quarantine tables)
-    │
-    ├── Silver   transactions  — quality checks, line_total, cancellation flag
-    │            customers     — email validation, deduplication
-    │            products      — slow-mover flag, orphaned SKU detection
-    │
-    └── Gold     customer_360  — RFM scores per customer
-                 daily_kpis    — revenue, AOV, cancellation rate by day
-                 demand_forecast — Prophet output, 12-week horizon
-    │
-    ▼
-ML Jobs  (weekly retrain, serverless compute)
-    ├── segmentation.py      K-Means on RFM features → 4 segments
-    │                        Champions · Loyal Customers · At Risk · Lost
-    │
-    ├── demand_forecast.py   Prophet per SKU, top 50 by volume
-    │                        MAE + MAPE logged to MLflow
-    │
-    └── model_validation.py  Checks thresholds → sets @champion alias in UC
-    │
-    ▼
-Unity Catalog (retail_prod)
-    ├── bronze.*    append-only, full audit trail
-    ├── silver.*    cleaned and validated
-    ├── bronze.*    business-ready (gold logic lands here via Lakeflow)
-    └── ml.*        MLflow model artifacts, registered models
-    │
-    ▼
-Databricks SQL  →  Power BI
+> Full editable diagram: [`docs/architecture.drawio`](docs/architecture.drawio) — open at [diagrams.net](https://app.diagrams.net)
+
+```mermaid
+flowchart TD
+    subgraph ONPREM["🖥️ On-Premises"]
+        SQL["SQL Server 2022\nExpress · VM\ntransactions · customers · products"]
+        SHIR["Self-Hosted IR\nBridges ADF to on-prem"]
+        SQL --> SHIR
+    end
+
+    subgraph ADF["☁️ Azure Data Factory"]
+        P1["pl_ingest_transactions\nWatermark incremental · 94s · 1M rows"]
+        P2["pl_ingest_customers\nFull daily · 37s"]
+        P3["pl_ingest_products\nFull daily · 36s"]
+    end
+
+    subgraph STORAGE["🗂️ ADLS Gen2 — stretaillhdev"]
+        BRONZE_C["bronze/\nRaw Parquet landing zone"]
+        KV["Key Vault\nkv-retaillh-dev\nstorage key · SQL password"]
+    end
+
+    subgraph DBX["⚡ Azure Databricks — Unity Catalog: retail_prod"]
+        AL["Auto Loader\ncloudFiles stream"]
+
+        subgraph LAKEFLOW["Lakeflow Declarative Pipeline"]
+            direction TB
+            B["🟠 Bronze\nraw_transactions · raw_customers · raw_products\nappend-only · schema enforcement · _quarantine_*"]
+            S["⬜ Silver\ntransactions — line_total · cancel flag · quality checks\ncustomers — email validation · deduplication\nproducts — slow-mover flag · orphan SKU"]
+            G["🟡 Gold\ncustomer_360 — RFM scores\ndaily_kpis — revenue · AOV · cancel rate\ndemand_forecast — Prophet output table"]
+            B --> S --> G
+        end
+
+        subgraph ML["🟣 ML Jobs — Weekly Retrain — Serverless"]
+            SEG["segmentation.py\nK-Means · K=4\nChampions · Loyal · At Risk · Lost"]
+            FC["demand_forecast.py\nProphet · top 50 SKUs\n12-week horizon · MAE + MAPE → MLflow"]
+            VAL["model_validation.py\nThreshold check\n@champion alias in Unity Catalog"]
+            SEG --> VAL
+            FC --> VAL
+        end
+
+        AL --> B
+        G --> SEG
+        G --> FC
+    end
+
+    subgraph SERVE["📊 Serving"]
+        DBSQL["Databricks SQL\nServerless warehouse"]
+        PBI["Power BI\nDirectQuery\ncustomer_360 · daily_kpis · demand_forecast"]
+        DBSQL --> PBI
+    end
+
+    subgraph CICD["🔄 CI/CD"]
+        GHA["GitHub Actions\nterraform plan/apply · bundle deploy\ndev → prod promotion on tag"]
+    end
+
+    SHIR -->|"HTTPS"| ADF
+    ADF -->|"Parquet"| BRONZE_C
+    BRONZE_C -->|"cloudFiles stream"| AL
+    DBX -->|"SQL endpoint"| DBSQL
 ```
 
 ---
