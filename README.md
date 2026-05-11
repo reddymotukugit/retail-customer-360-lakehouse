@@ -9,7 +9,6 @@ Azure data engineering project that ingests retail transaction data, processes i
 
 ![Architecture](docs/architecture.svg)
 
-> Full editable diagram: [`docs/architecture.drawio`](docs/architecture.drawio) — open at [diagrams.net](https://app.diagrams.net)
 
 ---
 
