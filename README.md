@@ -2,7 +2,6 @@
 
 Azure data engineering project that ingests retail transaction data, processes it through a Bronze → Silver → Gold lakehouse on Databricks, and runs weekly ML jobs for customer segmentation and SKU-level demand forecasting.
 
-**Pipeline runtime:** ~4 min (Lakeflow) · **ML retrain:** ~7 min (serverless compute)
 
 ---
 
@@ -155,5 +154,4 @@ Covers: revenue calculation logic, customer deduplication, null handling in silv
 
 ## Data Source
 
-UCI Online Retail II — E. Agyemang et al. (2022). UCI Machine Learning Repository.  
-Licensed under CC BY 4.0. Supplemented with synthetic customer and product data.
+UCI Online Retail II — E. Agyemang et al. (2022). UCI Machine Learning Repository.
