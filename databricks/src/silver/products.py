@@ -20,7 +20,7 @@ PRODUCT_EXPECTATIONS = {
 # ---------------------------------------------------------------------------
 
 @dlt.table(
-    name="products",
+    name="silver.products",
     comment="Clean product catalogue. Includes is_slow_mover flag and is_orphaned_sku flag.",
     table_properties={
         "delta.autoOptimize.optimizeWrite": "true",

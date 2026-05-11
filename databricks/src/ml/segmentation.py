@@ -1,9 +1,9 @@
 # Databricks notebook source
 # ML — Customer Segmentation (RFM + K-Means)
 # ============================================
-# Input:  retail_prod.bronze.customer_360 (RFM features from DLT pipeline)
+# Input:  retail_prod.gold.customer_360 (RFM features from DLT pipeline)
 # Model:  K-Means clustering, K=4
-# Output: Cluster labels written to retail_prod.bronze.customer_segments
+# Output: Cluster labels written to retail_prod.ml.customer_segments
 #         (standalone Delta table — DLT-managed tables are read-only externally)
 #         Model registered in MLflow Model Registry
 #
@@ -46,7 +46,7 @@ SEGMENT_LABELS = {
 # ---------------------------------------------------------------------------
 
 def load_rfm_features() -> pd.DataFrame:
-    df = spark.table(f"{CATALOG}.bronze.customer_360")
+    df = spark.table(f"{CATALOG}.gold.customer_360")
     features_df = (
         df.select(
             "customer_id",
@@ -95,7 +95,7 @@ def train_and_log(features_df: pd.DataFrame):
 
     with mlflow.start_run(run_name="kmeans_rfm_segmentation") as run:
         mlflow.log_param("n_clusters", N_CLUSTERS)
-        mlflow.log_param("dataset_version", "retail_prod.bronze.customer_360")
+        mlflow.log_param("dataset_version", "retail_prod.gold.customer_360")
         mlflow.log_param("n_customers", len(features_df))
 
         kmeans = KMeans(n_clusters=N_CLUSTERS, random_state=42, n_init=10)
@@ -161,10 +161,10 @@ def writeback_segments(features_df: pd.DataFrame, cluster_labels: np.ndarray,
             .format("delta")
             .mode("overwrite")
             .option("overwriteSchema", "true")
-            .saveAsTable(f"{CATALOG}.bronze.customer_segments")
+            .saveAsTable(f"{CATALOG}.ml.customer_segments")
     )
 
-    print(f"Wrote {len(features_df):,} segment labels to {CATALOG}.bronze.customer_segments")
+    print(f"Wrote {len(features_df):,} segment labels to {CATALOG}.ml.customer_segments")
 
     # Log segment distribution
     dist = features_df["customer_segment"].value_counts().to_dict()

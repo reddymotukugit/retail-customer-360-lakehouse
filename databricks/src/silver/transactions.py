@@ -34,7 +34,7 @@ CUSTOMER_ID_EXPECTATION = {
 # ---------------------------------------------------------------------------
 
 @dlt.table(
-    name="cancelled_transactions",
+    name="silver.cancelled_transactions",
     comment="Rows where invoice_no starts with 'C' — cancellations tracked separately, never dropped.",
     table_properties={"quality": "silver"}
 )
@@ -51,7 +51,7 @@ def cancelled_transactions():
 # ---------------------------------------------------------------------------
 
 @dlt.table(
-    name="_quarantine_transactions",
+    name="silver._quarantine_transactions",
     comment="Rows that failed the customer_id IS NOT NULL expectation. Kept for audit.",
     table_properties={"quality": "quarantine"}
 )
@@ -70,7 +70,7 @@ def quarantine_transactions():
 # ---------------------------------------------------------------------------
 
 @dlt.table(
-    name="transactions",
+    name="silver.transactions",
     comment="Clean, validated retail transactions. Cancellations excluded. Quarantine rows excluded.",
     table_properties={
         "delta.autoOptimize.optimizeWrite": "true",

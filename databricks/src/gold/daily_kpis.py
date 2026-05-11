@@ -18,7 +18,7 @@ from pyspark.sql.types import DecimalType
 from pyspark.sql.window import Window
 
 @dlt.table(
-    name="daily_kpis",
+    name="gold.daily_kpis",
     comment="One row per calendar date. Powers the Power BI dashboard.",
     table_properties={
         "delta.autoOptimize.optimizeWrite": "true",

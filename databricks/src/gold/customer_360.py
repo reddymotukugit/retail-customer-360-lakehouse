@@ -16,7 +16,7 @@ from pyspark.sql.types import DecimalType
 from pyspark.sql.window import Window
 
 @dlt.table(
-    name="customer_360",
+    name="gold.customer_360",
     comment="One row per customer. RFM scores, lifetime value, ML segment label, churn risk. Rebuilt daily.",
     table_properties={
         "delta.autoOptimize.optimizeWrite": "true",

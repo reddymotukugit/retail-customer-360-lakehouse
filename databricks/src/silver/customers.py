@@ -22,7 +22,7 @@ CUSTOMER_EXPECTATIONS = {
 # ---------------------------------------------------------------------------
 
 @dlt.table(
-    name="_quarantine_customers",
+    name="silver._quarantine_customers",
     comment="Customer rows with invalid or missing email addresses.",
     table_properties={"quality": "quarantine"}
 )
@@ -42,7 +42,7 @@ def quarantine_customers():
 # ---------------------------------------------------------------------------
 
 @dlt.table(
-    name="customers",
+    name="silver.customers",
     comment="Clean customer profiles. SCD Type 1 — latest record per customer_id wins.",
     table_properties={
         "delta.autoOptimize.optimizeWrite": "true",
