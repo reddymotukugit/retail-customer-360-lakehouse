@@ -1,0 +1,36 @@
+{
+  "name": "ds_adls_transactions_parquet",
+  "type": "Microsoft.DataFactory/factories/datasets",
+  "properties": {
+    "description": "ADLS Gen2 bronze container \u2014 transactions as Parquet, partitioned by year/month. Path: bronze/transactions/year=YYYY/month=MM/",
+    "linkedServiceName": {
+      "referenceName": "ls_adls_gen2",
+      "type": "LinkedServiceReference",
+      "parameters": {
+        "storage_account_url": {
+          "value": "@dataset().storage_account_url",
+          "type": "Expression"
+        }
+      }
+    },
+    "parameters": {
+      "storage_account_url": {
+        "type": "string",
+        "defaultValue": "https://stretaillhdev.dfs.core.windows.net"
+      }
+    },
+    "type": "Parquet",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": "bronze",
+        "folderPath": {
+          "value": "transactions/year=@{formatDateTime(utcNow(),'yyyy')}/month=@{formatDateTime(utcNow(),'MM')}",
+          "type": "Expression"
+        }
+      },
+      "compressionCodec": "snappy"
+    },
+    "schema": []
+  }
+}

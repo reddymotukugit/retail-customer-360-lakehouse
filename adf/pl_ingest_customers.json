@@ -1,0 +1,32 @@
+{
+  "name": "pl_ingest_customers",
+  "type": "Microsoft.DataFactory/factories/pipelines",
+  "properties": {
+    "description": "Full daily load of customers table from on-prem SQL Server to ADLS Gen2 bronze container as Parquet. Overwrites previous day's file.",
+    "activities": [
+      {
+        "name": "copy_customers_full",
+        "description": "Full table copy — customers is small and slow-changing. Overwrite daily.",
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": "SELECT customer_id, full_name, email, phone, date_of_birth, registration_date, loyalty_tier, is_wholesaler, preferred_store_id, marketing_opt_in FROM dbo.customers"
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "formatSettings": { "type": "ParquetWriteSettings" }
+          },
+          "enableStaging": false
+        },
+        "inputs": [{ "referenceName": "ds_sqlserver_customers", "type": "DatasetReference" }],
+        "outputs": [{ "referenceName": "ds_adls_customers_parquet", "type": "DatasetReference" }]
+      }
+    ],
+    "annotations": ["full-load", "bronze", "daily"]
+  }
+}

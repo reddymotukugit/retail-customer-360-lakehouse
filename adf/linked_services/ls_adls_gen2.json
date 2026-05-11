@@ -1,0 +1,24 @@
+{
+  "name": "ls_adls_gen2",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "ADLS Gen2 — primary landing zone for bronze/silver/gold containers",
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "@{linkedService().storage_account_url}",
+      "accountKey": {
+        "type": "AzureKeyVaultSecret",
+        "store": {
+          "referenceName": "ls_keyvault",
+          "type": "LinkedServiceReference"
+        },
+        "secretName": "adls-storage-account-key"
+      }
+    },
+    "parameters": {
+      "storage_account_url": {
+        "type": "string"
+      }
+    }
+  }
+}

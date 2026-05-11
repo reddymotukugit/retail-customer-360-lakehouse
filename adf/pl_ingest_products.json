@@ -1,0 +1,32 @@
+{
+  "name": "pl_ingest_products",
+  "type": "Microsoft.DataFactory/factories/pipelines",
+  "properties": {
+    "description": "Full daily load of products table from on-prem SQL Server to ADLS Gen2 bronze container as Parquet.",
+    "activities": [
+      {
+        "name": "copy_products_full",
+        "description": "Full table copy — product catalogue is small. Overwrite daily.",
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": "SELECT stock_code, description, category, avg_unit_price, cost_price, weight_grams, is_active, supplier_id, first_listed_date FROM dbo.products"
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "formatSettings": { "type": "ParquetWriteSettings" }
+          },
+          "enableStaging": false
+        },
+        "inputs": [{ "referenceName": "ds_sqlserver_products", "type": "DatasetReference" }],
+        "outputs": [{ "referenceName": "ds_adls_products_parquet", "type": "DatasetReference" }]
+      }
+    ],
+    "annotations": ["full-load", "bronze", "daily"]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "ls_keyvault",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "Azure Key Vault \u2014 stores SQL Server password and ADLS account key. ADF managed identity has Get+List permissions.",
+    "type": "AzureKeyVault",
+    "typeProperties": {
+      "baseUrl": "https://kv-retaillh-dev.vault.azure.net/"
+    }
+  }
+}

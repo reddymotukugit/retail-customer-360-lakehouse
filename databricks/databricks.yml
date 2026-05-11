@@ -1,0 +1,159 @@
+# Declarative Automation Bundle
+# ================================
+# Formerly "Databricks Asset Bundles" (renamed Feb 2026, CLI v0.287.0+).
+# Handles everything inside the Databricks workspace.
+# Terraform handles Azure-side resources (storage, ADF, Key Vault).
+#
+# Deploy:
+#   databricks bundle deploy --target dev
+#   databricks bundle deploy --target prod
+
+bundle:
+  name: retail-lakehouse
+
+variables:
+  storage_account:
+    description: "ADLS Gen2 storage account name (output from Terraform)"
+    default: "stretaillhdev"
+  storage_account_key:
+    description: "ADLS Gen2 storage account key (dev only — prod uses managed identity)"
+    default: ""
+  catalog:
+    default: retail_prod
+  cluster_policy_id:
+    description: "Jobs Compute cluster policy ID (output from Terraform)"
+    default: "00070BB969B7B0BF"
+
+workspace:
+  host: https://adb-7405615013053011.11.azuredatabricks.net
+
+targets:
+  # ---------------------------------------------------------------------------
+  # Dev — single worker, shortened retention, fast iteration
+  # ---------------------------------------------------------------------------
+  dev:
+    mode: development
+    default: true
+    workspace:
+      root_path: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: retail_prod
+
+    resources:
+      pipelines:
+        lakeflow_pipeline:
+          development: true
+          channel: CURRENT
+          clusters:
+            - label: default
+              num_workers: 1
+              node_type_id: Standard_D4s_v3
+              spark_conf:
+                spark.databricks.delta.preview.enabled: "true"
+                # Dev: explicit storage key so Auto Loader can read ADLS
+                # without relying on the external location credential propagation.
+                # Remove this once managed identity RBAC is confirmed working.
+                fs.azure.account.key.stretaillhdev.dfs.core.windows.net: ${var.storage_account_key}
+
+      jobs:
+        daily_pipeline_job:
+          tasks:
+            - task_key: run_lakeflow
+              pipeline_task:
+                pipeline_id: ${resources.pipelines.lakeflow_pipeline.id}
+
+  # ---------------------------------------------------------------------------
+  # Prod — jobs compute policy, full scale, scheduled
+  # ---------------------------------------------------------------------------
+  prod:
+    mode: production
+    workspace:
+      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}
+
+    resources:
+      pipelines:
+        lakeflow_pipeline:
+          development: false
+          channel: CURRENT
+          clusters:
+            - label: default
+              policy_id: ${var.cluster_policy_id}
+              autoscale:
+                min_workers: 1
+                max_workers: 2
+
+      jobs:
+        daily_pipeline_job:
+          schedule:
+            quartz_cron_expression: "0 0 1 * * ?"   # 01:00 AM daily
+            timezone_id: "Australia/Sydney"
+          email_notifications:
+            on_failure:
+              - ${workspace.current_user.userName}
+
+        ml_retrain_job:
+          schedule:
+            quartz_cron_expression: "0 0 2 ? * SUN"  # 02:00 AM every Sunday
+            timezone_id: "Australia/Sydney"
+
+resources:
+  pipelines:
+    lakeflow_pipeline:
+      name: retail-lakehouse-pipeline-${bundle.target}
+      catalog: ${var.catalog}
+      schema: bronze
+      configuration:
+        pipeline.storage_account: ${var.storage_account}
+      libraries:
+        - notebook:
+            path: ./src/bronze/autoloader_ingest.py
+        - notebook:
+            path: ./src/silver/transactions.py
+        - notebook:
+            path: ./src/silver/customers.py
+        - notebook:
+            path: ./src/silver/products.py
+        - notebook:
+            path: ./src/gold/customer_360.py
+        - notebook:
+            path: ./src/gold/daily_kpis.py
+
+  jobs:
+    daily_pipeline_job:
+      name: retail-daily-pipeline-${bundle.target}
+      tasks:
+        - task_key: run_lakeflow
+          description: "Bronze → Silver → Gold via Lakeflow SDP"
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.lakeflow_pipeline.id}
+          timeout_seconds: 7200
+
+        - task_key: create_forecast_table
+          description: "Ensure gold.demand_forecast table schema exists"
+          depends_on:
+            - task_key: run_lakeflow
+          notebook_task:
+            notebook_path: ./src/gold/demand_forecast_table.py
+
+    ml_retrain_job:
+      name: retail-ml-retrain-${bundle.target}
+      # Serverless compute — no Azure VM quota consumed, no cluster spin-up wait.
+      tasks:
+        - task_key: run_segmentation
+          description: "K-Means RFM segmentation + MLflow logging"
+          notebook_task:
+            notebook_path: ./src/ml/segmentation.py
+
+        - task_key: run_demand_forecast
+          description: "Prophet demand forecasting for top 50 SKUs + MLflow logging"
+          depends_on:
+            - task_key: run_segmentation
+          notebook_task:
+            notebook_path: ./src/ml/demand_forecast.py
+
+        - task_key: validate_and_promote
+          description: "Validate model metrics and promote Staging → Production"
+          depends_on:
+            - task_key: run_demand_forecast
+          notebook_task:
+            notebook_path: ./src/ml/model_validation.py

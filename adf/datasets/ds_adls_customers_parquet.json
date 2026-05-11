@@ -1,0 +1,33 @@
+{
+  "name": "ds_adls_customers_parquet",
+  "type": "Microsoft.DataFactory/factories/datasets",
+  "properties": {
+    "description": "ADLS Gen2 bronze container \u2014 customers as Parquet full daily snapshot. Path: bronze/customers/",
+    "linkedServiceName": {
+      "referenceName": "ls_adls_gen2",
+      "type": "LinkedServiceReference",
+      "parameters": {
+        "storage_account_url": {
+          "value": "@dataset().storage_account_url",
+          "type": "Expression"
+        }
+      }
+    },
+    "parameters": {
+      "storage_account_url": {
+        "type": "string",
+        "defaultValue": "https://stretaillhdev.dfs.core.windows.net"
+      }
+    },
+    "type": "Parquet",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": "bronze",
+        "folderPath": "customers"
+      },
+      "compressionCodec": "snappy"
+    },
+    "schema": []
+  }
+}

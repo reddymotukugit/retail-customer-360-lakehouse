@@ -1,0 +1,96 @@
+{
+  "name": "pl_ingest_transactions",
+  "type": "Microsoft.DataFactory/factories/pipelines",
+  "properties": {
+    "description": "Incremental watermark-based ingestion of transactions from on-prem SQL Server to ADLS Gen2 bronze container as Parquet.",
+    "activities": [
+
+      {
+        "name": "lkp_get_watermark",
+        "description": "Read the last successful watermark from pipeline_watermarks table.",
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": "SELECT last_watermark_value FROM dbo.pipeline_watermarks WHERE pipeline_name = 'pl_ingest_transactions'"
+          },
+          "dataset": { "referenceName": "ds_sqlserver_watermarks", "type": "DatasetReference" },
+          "firstRowOnly": true
+        }
+      },
+
+      {
+        "name": "lkp_get_max_date",
+        "description": "Read the maximum InvoiceDate from source — this becomes the new watermark on success.",
+        "type": "Lookup",
+        "dependsOn": [{ "activity": "lkp_get_watermark", "dependencyConditions": ["Succeeded"] }],
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": "SELECT MAX(invoice_date) AS max_invoice_date FROM dbo.transactions"
+          },
+          "dataset": { "referenceName": "ds_sqlserver_transactions", "type": "DatasetReference" },
+          "firstRowOnly": true
+        }
+      },
+
+      {
+        "name": "copy_incremental_transactions",
+        "description": "Copy only rows where invoice_date > last watermark. Output: Parquet in bronze/transactions/year=YYYY/month=MM/.",
+        "type": "Copy",
+        "dependsOn": [{ "activity": "lkp_get_max_date", "dependencyConditions": ["Succeeded"] }],
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": {
+              "value": "SELECT invoice_no, stock_code, description, quantity, invoice_date, unit_price, customer_id, country FROM dbo.transactions WHERE invoice_date > '@{activity('lkp_get_watermark').output.firstRow.last_watermark_value}'",
+              "type": "Expression"
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": { "allowDataTruncation": true }
+          }
+        },
+        "inputs": [{ "referenceName": "ds_sqlserver_transactions", "type": "DatasetReference" }],
+        "outputs": [{ "referenceName": "ds_adls_transactions_parquet", "type": "DatasetReference" }]
+      },
+
+      {
+        "name": "sp_update_watermark",
+        "description": "Update the watermark to the max invoice_date from this run. Only runs on successful copy.",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [{ "activity": "copy_incremental_transactions", "dependencyConditions": ["Succeeded"] }],
+        "typeProperties": {
+          "storedProcedureName": "dbo.usp_update_watermark",
+          "storedProcedureParameters": {
+            "pipeline_name": {
+              "value": "pl_ingest_transactions",
+              "type": "String"
+            },
+            "new_watermark_value": {
+              "value": "@{activity('lkp_get_max_date').output.firstRow.max_invoice_date}",
+              "type": "DateTime"
+            }
+          }
+        },
+        "linkedServiceName": { "referenceName": "ls_sqlserver_onprem", "type": "LinkedServiceReference" }
+      }
+
+    ],
+    "annotations": ["incremental", "watermark", "bronze"],
+    "concurrency": 1
+  }
+}

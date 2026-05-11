@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+*.env
+
+# Data — never commit raw data to Git
+data/raw/
+data/processed/
+
+# Terraform
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.backup
+infra/*.tfplan
+infra/tfplan
+infra/plan_output.txt
+infra/.terraform.lock.hcl
+
+# Databricks CLI
+.databricks/
+
+# Secrets
+*.pem
+*.key
+secrets.json
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store

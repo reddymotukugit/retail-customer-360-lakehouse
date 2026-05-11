@@ -1,0 +1,28 @@
+{
+  "name": "ds_sqlserver_watermarks",
+  "type": "Microsoft.DataFactory/factories/datasets",
+  "properties": {
+    "description": "SQL Server on-prem — dbo.pipeline_watermarks table. Used by Lookup activity to get/set incremental load state.",
+    "linkedServiceName": {
+      "referenceName": "ls_sqlserver_onprem",
+      "type": "LinkedServiceReference",
+      "parameters": {
+        "sql_server_host": {
+          "value": "@dataset().sql_server_host",
+          "type": "Expression"
+        }
+      }
+    },
+    "parameters": {
+      "sql_server_host": {
+        "type": "string",
+        "defaultValue": "20.62.125.63"
+      }
+    },
+    "type": "SqlServerTable",
+    "typeProperties": {
+      "schema": "dbo",
+      "table": "pipeline_watermarks"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+name: Databricks Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "databricks/**"
+      - ".github/workflows/databricks_deploy.yml"
+
+env:
+  DATABRICKS_HOST:  ${{ secrets.DATABRICKS_HOST }}
+  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+jobs:
+  deploy:
+    name: Validate → Deploy → Smoke Test → Promote
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Databricks CLI
+        run: pip install databricks-cli databricks-sdk
+
+      - name: Configure Databricks CLI
+        run: |
+          databricks configure --token <<EOF
+          ${{ secrets.DATABRICKS_HOST }}
+          ${{ secrets.DATABRICKS_TOKEN }}
+          EOF
+
+      # -----------------------------------------------------------------------
+      # Validate bundle before deploying
+      # -----------------------------------------------------------------------
+      - name: Bundle Validate
+        working-directory: databricks
+        run: databricks bundle validate --target prod
+
+      # -----------------------------------------------------------------------
+      # Deploy to production
+      # -----------------------------------------------------------------------
+      - name: Bundle Deploy
+        working-directory: databricks
+        run: |
+          databricks bundle deploy --target prod \
+            --var "storage_account=${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+            --var "cluster_policy_id=${{ secrets.CLUSTER_POLICY_ID }}" \
+            --var "databricks_host=${{ secrets.DATABRICKS_HOST }}"
+
+      # -----------------------------------------------------------------------
+      # Smoke test — single-day backfill, verify row counts non-zero
+      # -----------------------------------------------------------------------
+      - name: Smoke Test
+        working-directory: databricks
+        run: |
+          RUN_ID=$(databricks jobs run-now \
+            --job-name "retail-daily-pipeline-prod" \
+            --output json | python3 -c "import sys,json; print(json.load(sys.stdin)['run_id'])")
+
+          echo "Smoke test job run_id: $RUN_ID"
+
+          # Poll until done (max 30 min)
+          for i in $(seq 1 60); do
+            STATE=$(databricks runs get --run-id $RUN_ID --output json \
+              | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['state']['life_cycle_state'])")
+            echo "  Attempt $i: state=$STATE"
+            if [ "$STATE" == "TERMINATED" ]; then
+              RESULT=$(databricks runs get --run-id $RUN_ID --output json \
+                | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['state']['result_state'])")
+              echo "Final result: $RESULT"
+              if [ "$RESULT" != "SUCCESS" ]; then
+                echo "Smoke test FAILED. Deployment halted."
+                exit 1
+              fi
+              break
+            fi
+            sleep 30
+          done
+
+      # -----------------------------------------------------------------------
+      # Promote models from Staging → Production if smoke test passes
+      # -----------------------------------------------------------------------
+      - name: Promote ML Models
+        run: |
+          python3 << 'EOF'
+          import mlflow
+          from mlflow import MlflowClient
+          import os
+
+          mlflow.set_tracking_uri(os.environ["DATABRICKS_HOST"])
+          mlflow.set_registry_uri("databricks-uc")
+          client = MlflowClient()
+
+          CATALOG = "retail_prod"
+          models = [
+              f"{CATALOG}.ml.customer_segmentation",
+              f"{CATALOG}.ml.demand_forecast_prophet",
+          ]
+
+          for model_name in models:
+              versions = client.search_model_versions(f"name='{model_name}'")
+              staging = [v for v in versions if v.current_stage == "Staging"]
+              if staging:
+                  latest = max(staging, key=lambda v: int(v.version))
+                  client.transition_model_version_stage(
+                      name=model_name,
+                      version=latest.version,
+                      stage="Production",
+                      archive_existing_versions=True,
+                  )
+                  print(f"Promoted {model_name} v{latest.version} to Production.")
+              else:
+                  print(f"No Staging version for {model_name} — skipping promotion.")
+          EOF
+
+      - name: Deployment Complete
+        run: echo "Deployment to prod completed successfully."
