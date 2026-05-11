@@ -1,7 +1,7 @@
 <svg viewBox="0 0 1560 650" xmlns="http://www.w3.org/2000/svg">
 <defs><style>text{font-family:Arial,Helvetica,sans-serif}</style>
 <marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker>
-<marker id="ahv" markerWidth="8" markerHeight="8" refX="3" refY="7" orient="auto"><path d="M0,0 L6,0 L3,8 z" fill="#94a3b8"/></marker>
+<marker id="ahv" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,0 L3,6 z" fill="#94a3b8"/></marker>
 </defs>
 <rect width="1560" height="650" fill="white"/>
 <text x="780" y="22" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Retail Customer 360 &amp; Demand Forecasting &#x2014; Lakehouse Architecture</text>
@@ -32,8 +32,6 @@
 <rect x="26" y="359" width="72" height="13" rx="6" fill="#f3f4f6" stroke="none" stroke-width="0"/>
 <text x="62" y="368.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#374151" font-family="Arial">On-prem bridge</text>
 <line x1="160" y1="326" x2="188" y2="326" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
-<rect x="118" y="312" width="38" height="13" rx="6" fill="#e8f4fd" stroke="none" stroke-width="0"/>
-<text x="137" y="321.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#0078D4" font-family="Arial">HTTPS</text>
 <rect x="188" y="38" width="1171" height="552" rx="8" fill="#f0f7ff" stroke="#0078D4" stroke-width="2"/>
 <text x="202" y="52" text-anchor="start" font-size="8.5" fill="#0078D4" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">MICROSOFT AZURE  &#x2014;  australiaeast</text>
 <rect x="198" y="58" width="192" height="532" rx="6" fill="#fff5fb" stroke="#ec4899" stroke-width="1.5"/>
