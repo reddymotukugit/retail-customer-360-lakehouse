@@ -1,227 +1,230 @@
-<svg viewBox="0 0 1300 735" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1420 740" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <style>
 text { font-family: Arial, Helvetica, sans-serif; }
-.title { font-size:14px; font-weight:700; fill:#1a1a1a; }
-.subtitle { font-size:9.5px; fill:#666666; }
-.zone-lbl { font-size:8.5px; font-weight:700; letter-spacing:0.7; }
-.sub-lbl { font-size:8px; font-weight:700; letter-spacing:0.5; }
-.svc-name { font-size:9.5px; font-weight:700; fill:#1a1a1a; }
-.detail { font-size:8.5px; fill:#64748b; }
-.badge-text { font-size:7.5px; font-weight:700; }
-.med-title { font-size:9px; font-weight:700; }
-.med-detail { font-size:8px; fill:#64748b; }
-.legend-text { font-size:9px; fill:#555; }
+.title  { font-size:14px; font-weight:700; fill:#1a1a1a; }
+.sub    { font-size:9.5px; fill:#666666; }
+.zlbl   { font-size:8.5px; font-weight:700; letter-spacing:0.7; }
+.slbl   { font-size:8px;   font-weight:700; letter-spacing:0.5; }
+.sname  { font-size:9.5px; font-weight:700; fill:#1a1a1a; }
+.det    { font-size:8.5px; fill:#64748b; }
+.btxt   { font-size:7.5px; font-weight:700; }
+.mtitle { font-size:9px;   font-weight:700; }
+.mdet   { font-size:8px;   fill:#64748b; }
+.legtxt { font-size:9px;   fill:#555; }
 </style>
-<marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-<path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+<marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+  <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
 </marker>
-<marker id="arr-v" markerWidth="8" markerHeight="8" refX="3" refY="6" orient="auto">
-<path d="M0,0 L6,0 L3,8 z" fill="#94a3b8"/>
+<marker id="ahv" markerWidth="8" markerHeight="8" refX="3" refY="7" orient="auto">
+  <path d="M0,0 L6,0 L3,8 z" fill="#94a3b8"/>
 </marker>
 </defs>
-<rect width="1300" height="735" fill="white"/>
-<text x="650" y="22" text-anchor="middle" class="title">Retail Customer 360 &amp; Demand Forecasting &#x2014; Lakehouse Architecture</text>
-<text x="650" y="37" text-anchor="middle" class="subtitle">Azure Data Factory  &#xb7;  ADLS Gen2  &#xb7;  Azure Databricks  &#xb7;  Unity Catalog  &#xb7;  Power BI  &#xb7;  GitHub Actions</text>
-<rect x="8" y="50" width="150" height="630" rx="8" fill="#f0f4f8" stroke="#8a9bb0" stroke-width="2"/>
-<text x="20" y="67" text-anchor="start" class="zone-lbl" fill="#4a5568">ON-PREMISES</text>
-<rect x="16" y="74" width="134" height="158" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect width="1420" height="740" fill="white"/>
+<text x="710" y="22" text-anchor="middle" class="title">Retail Customer 360 &amp; Demand Forecasting &#x2014; Lakehouse Architecture</text>
+<text x="710" y="37" text-anchor="middle" class="sub">Azure Data Factory  &#xb7;  ADLS Gen2  &#xb7;  Azure Databricks  &#xb7;  Unity Catalog  &#xb7;  Power BI  &#xb7;  GitHub Actions</text>
+<rect x="8" y="50" width="155" height="630" rx="8" fill="#f0f4f8" stroke="#8a9bb0" stroke-width="2"/>
+<text x="20" y="67" text-anchor="start" class="zlbl" fill="#4a5568">ON-PREMISES</text>
+<rect x="16" y="74" width="139" height="155" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
 <rect x="23" y="82" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
-<text x="36" y="100" text-anchor="middle" font-size="14" fill="#374151">&#x1F5C4;</text>
-<text x="54" y="92" text-anchor="start" class="svc-name">SQL Server 2022</text>
-<text x="23" y="110" text-anchor="start" class="detail">Azure VM &#xb7; Express</text>
-<text x="23" y="123" text-anchor="start" class="detail">transactions</text>
-<text x="23" y="136" text-anchor="start" class="detail">customers &#xb7; products</text>
-<rect x="23" y="150" width="58" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
-<text x="52" y="159.5" text-anchor="middle" class="badge-text" fill="#1d4ed8">~1 M rows</text>
-<rect x="23" y="168" width="58" height="13" rx="6" fill="#e0f2fe" stroke="none" stroke-width="0"/>
-<text x="52" y="177.5" text-anchor="middle" class="badge-text" fill="#0369a1">UCI Retail II</text>
-<line x1="83" y1="232" x2="83" y2="250" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="16" y="254" width="134" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="23" y="262" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
-<text x="36" y="280" text-anchor="middle" font-size="12" fill="#374151">&#x1F517;</text>
-<text x="54" y="272" text-anchor="start" class="svc-name">Self-Hosted IR</text>
-<text x="23" y="290" text-anchor="start" class="detail">Bridges on-prem</text>
-<text x="23" y="303" text-anchor="start" class="detail">network to ADF</text>
-<text x="23" y="316" text-anchor="start" class="detail">via HTTPS tunnel</text>
-<rect x="23" y="333" width="72" height="13" rx="6" fill="#f3f4f6" stroke="none" stroke-width="0"/>
-<text x="59" y="342.5" text-anchor="middle" class="badge-text" fill="#374151">On-prem bridge</text>
-<line x1="158" y1="311" x2="168" y2="311" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
-<text x="163" y="306" text-anchor="middle" font-size="7.5" fill="#94a3b8">HTTPS</text>
-<rect x="168" y="38" width="978" height="642" rx="8" fill="#f0f7ff" stroke="#0078D4" stroke-width="2"/>
-<text x="182" y="50" text-anchor="start" class="zone-lbl" fill="#0078D4">MICROSOFT AZURE  &#x2014;  australiaeast</text>
-<rect x="178" y="58" width="178" height="622" rx="6" fill="#fff5fb" stroke="#ec4899" stroke-width="1.5"/>
-<text x="188" y="72" text-anchor="start" class="sub-lbl" fill="#be185d">AZURE DATA FACTORY</text>
-<rect x="186" y="80" width="162" height="178" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="193" y="88" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="206" y="106" text-anchor="middle" font-size="13" fill="#374151">&#x26A1;</text>
-<text x="224" y="97" text-anchor="start" class="svc-name" font-size="9">pl_ingest_transactions</text>
-<text x="193" y="117" text-anchor="start" class="detail">Watermark incremental</text>
-<text x="193" y="130" text-anchor="start" class="detail">copy &#xb7; 94 s &#xb7; 1 M rows</text>
-<rect x="193" y="150" width="76" height="13" rx="6" fill="#ffedd5" stroke="none" stroke-width="0"/>
-<text x="231" y="159.5" text-anchor="middle" class="badge-text" fill="#c2410c">Incremental</text>
-<line x1="267" y1="260" x2="267" y2="272" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="186" y="276" width="162" height="178" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="193" y="284" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="206" y="302" text-anchor="middle" font-size="13" fill="#374151">&#x26A1;</text>
-<text x="224" y="293" text-anchor="start" class="svc-name" font-size="9">pl_ingest_customers</text>
-<text x="193" y="313" text-anchor="start" class="detail">Full load &#xb7; daily &#xb7; 37 s</text>
-<text x="193" y="326" text-anchor="start" class="detail">customers table</text>
-<rect x="193" y="346" width="64" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
-<text x="225" y="355.5" text-anchor="middle" class="badge-text" fill="#1d4ed8">Full Load</text>
-<line x1="267" y1="456" x2="267" y2="468" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="186" y="472" width="162" height="178" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="193" y="480" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="206" y="498" text-anchor="middle" font-size="13" fill="#374151">&#x26A1;</text>
-<text x="224" y="489" text-anchor="start" class="svc-name" font-size="9">pl_ingest_products</text>
-<text x="193" y="509" text-anchor="start" class="detail">Full load &#xb7; daily &#xb7; 36 s</text>
-<text x="193" y="522" text-anchor="start" class="detail">products table</text>
-<rect x="193" y="542" width="64" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
-<text x="225" y="551.5" text-anchor="middle" class="badge-text" fill="#1d4ed8">Full Load</text>
-<line x1="356" y1="365" x2="376" y2="365" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
-<text x="366" y="360" text-anchor="middle" font-size="7.5" fill="#94a3b8">Parquet</text>
-<rect x="376" y="58" width="152" height="622" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5"/>
-<text x="386" y="72" text-anchor="start" class="sub-lbl" fill="#7e22ce">ADLS GEN2 STORAGE</text>
-<rect x="384" y="80" width="136" height="168" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="391" y="88" width="26" height="26" rx="4" fill="#f3e8ff" stroke="#e5e7eb" stroke-width="1"/>
-<text x="404" y="106" text-anchor="middle" font-size="13" fill="#374151">&#x1F5C2;</text>
-<text x="422" y="98" text-anchor="start" class="svc-name">stretaillhdev</text>
-<text x="391" y="116" text-anchor="start" class="detail">bronze/ container</text>
-<text x="391" y="129" text-anchor="start" class="detail">Raw Parquet</text>
-<text x="391" y="142" text-anchor="start" class="detail">landing zone</text>
-<rect x="391" y="156" width="60" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
-<text x="421" y="165.5" text-anchor="middle" class="badge-text" fill="#7e22ce">Delta Lake</text>
-<rect x="391" y="173" width="60" height="13" rx="6" fill="#fff7ed" stroke="none" stroke-width="0"/>
-<text x="421" y="182.5" text-anchor="middle" class="badge-text" fill="#c2410c">Append-only</text>
-<line x1="452" y1="253" x2="452" y2="273" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="384" y="278" width="136" height="118" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="391" y="286" width="26" height="26" rx="4" fill="#fef3c7" stroke="#e5e7eb" stroke-width="1"/>
-<text x="404" y="304" text-anchor="middle" font-size="13" fill="#374151">&#x1F511;</text>
-<text x="422" y="296" text-anchor="start" class="svc-name">Key Vault</text>
-<text x="391" y="314" text-anchor="start" class="detail">kv-retaillh-dev</text>
-<text x="391" y="327" text-anchor="start" class="detail">SQL password</text>
-<text x="391" y="340" text-anchor="start" class="detail">storage access key</text>
-<rect x="391" y="354" width="68" height="13" rx="6" fill="#fef3c7" stroke="none" stroke-width="0"/>
-<text x="425" y="363.5" text-anchor="middle" class="badge-text" fill="#92400e">Secrets mgmt</text>
-<line x1="528" y1="365" x2="548" y2="365" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
-<text x="538" y="360" text-anchor="middle" font-size="7.5" fill="#94a3b8">cloudFiles</text>
-<rect x="548" y="58" width="433" height="622" rx="6" fill="#fff8f5" stroke="#FF3621" stroke-width="1.5"/>
-<text x="558" y="72" text-anchor="start" class="sub-lbl" fill="#FF3621">AZURE DATABRICKS  &#x2014;  Unity Catalog: retail_prod</text>
-<line x1="768" y1="78" x2="768" y2="668" stroke="#fcd5cc" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="558" y="85" text-anchor="start" class="sub-lbl" fill="#FF3621">LAKEFLOW DECLARATIVE PIPELINE  &#xb7;  ~4 min</text>
-<text x="558" y="98" text-anchor="start" class="detail">Auto Loader (cloudFiles stream)</text>
-<rect x="558" y="106" width="205" height="78" rx="4" fill="#fff7ed" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="558" y="106" width="3" height="78" rx="1.5" fill="#f97316"/>
-<text x="568" y="120" class="med-title" fill="#c2410c">Bronze Layer</text>
-<text x="568" y="133" class="med-detail">raw_transactions &#xb7; raw_customers</text>
-<text x="568" y="145" class="med-detail">raw_products</text>
-<text x="568" y="157" class="med-detail">Append-only &#xb7; Schema enforcement</text>
-<text x="568" y="169" class="med-detail">_quarantine_* tables</text>
-<line x1="660" y1="184" x2="660" y2="198" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="558" y="202" width="205" height="92" rx="4" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="558" y="202" width="3" height="92" rx="1.5" fill="#94a3b8"/>
-<text x="568" y="216" class="med-title" fill="#475569">Silver Layer</text>
-<text x="568" y="229" class="med-detail">Transactions: line_total &#xb7; cancel flag</text>
-<text x="568" y="241" class="med-detail">quality checks</text>
-<text x="568" y="253" class="med-detail">Customers: email validation</text>
-<text x="568" y="265" class="med-detail">dedup &#xb7; Products: slow-mover flag</text>
-<line x1="660" y1="294" x2="660" y2="308" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="558" y="312" width="205" height="78" rx="4" fill="#fefce8" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="558" y="312" width="3" height="78" rx="1.5" fill="#eab308"/>
-<text x="568" y="326" class="med-title" fill="#854d0e">Gold Layer</text>
-<text x="568" y="339" class="med-detail">customer_360 (RFM scores)</text>
-<text x="568" y="351" class="med-detail">daily_kpis: revenue &#xb7; AOV &#xb7; cancel rate</text>
-<text x="568" y="363" class="med-detail">demand_forecast table</text>
-<text x="776" y="85" text-anchor="start" class="sub-lbl" fill="#7e22ce">ML JOBS  &#xb7;  WEEKLY RETRAIN  &#xb7;  ~7 min</text>
-<rect x="776" y="94" width="197" height="94" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="776" y="94" width="3" height="94" rx="1.5" fill="#a855f7"/>
-<text x="786" y="108" class="med-title" fill="#7e22ce">segmentation.py</text>
-<text x="786" y="121" class="med-detail">K-Means &#xb7; K=4</text>
-<text x="786" y="133" class="med-detail">Champions &#xb7; Loyal</text>
-<text x="786" y="145" class="med-detail">At Risk &#xb7; Lost</text>
-<text x="786" y="157" class="med-detail">Silhouette score &#x2192; MLflow</text>
-<line x1="874" y1="188" x2="874" y2="202" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="776" y="206" width="197" height="94" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="776" y="206" width="3" height="94" rx="1.5" fill="#a855f7"/>
-<text x="786" y="220" class="med-title" fill="#7e22ce">demand_forecast.py</text>
-<text x="786" y="233" class="med-detail">Prophet &#xb7; top 50 SKUs</text>
-<text x="786" y="245" class="med-detail">12-week horizon</text>
-<text x="786" y="257" class="med-detail">MAE + MAPE</text>
-<text x="786" y="269" class="med-detail">logged to MLflow</text>
-<line x1="874" y1="300" x2="874" y2="314" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="776" y="318" width="197" height="78" rx="4" fill="#f0fdf4" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="776" y="318" width="3" height="78" rx="1.5" fill="#16a34a"/>
-<text x="786" y="332" class="med-title" fill="#15803d">model_validation.py</text>
-<text x="786" y="345" class="med-detail">Metric threshold check</text>
-<text x="786" y="357" class="med-detail">@champion alias set</text>
-<text x="786" y="369" class="med-detail">Unity Catalog registry</text>
-<text x="786" y="381" class="med-detail">Blocks CI/CD on fail</text>
-<line x1="981" y1="365" x2="1001" y2="365" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
-<text x="991" y="360" text-anchor="middle" font-size="7.5" fill="#94a3b8">SQL endpoint</text>
-<rect x="1001" y="58" width="130" height="622" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-<text x="1011" y="72" text-anchor="start" class="sub-lbl" fill="#15803d">SERVING LAYER</text>
-<rect x="1009" y="80" width="114" height="168" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1016" y="88" width="26" height="26" rx="4" fill="#ecfdf5" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1029" y="106" text-anchor="middle" font-size="13" fill="#374151">&#x229E;</text>
-<text x="1047" y="98" text-anchor="start" class="svc-name">Databricks SQL</text>
-<text x="1016" y="116" text-anchor="start" class="detail">SQL Warehouse</text>
-<text x="1016" y="129" text-anchor="start" class="detail">customer_360</text>
-<text x="1016" y="142" text-anchor="start" class="detail">daily_kpis</text>
-<text x="1016" y="155" text-anchor="start" class="detail">demand_forecast</text>
-<line x1="1066" y1="253" x2="1066" y2="273" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-v)"/>
-<rect x="1009" y="278" width="114" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1016" y="286" width="26" height="26" rx="4" fill="#fef9c3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1029" y="304" text-anchor="middle" font-size="13" fill="#374151">&#x1F4CA;</text>
-<text x="1047" y="296" text-anchor="start" class="svc-name">Power BI</text>
-<text x="1016" y="314" text-anchor="start" class="detail">DirectQuery mode</text>
-<text x="1016" y="327" text-anchor="start" class="detail">Live dashboards</text>
-<text x="1016" y="340" text-anchor="start" class="detail">No data import</text>
-<rect x="1016" y="354" width="62" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
-<text x="1047" y="363.5" text-anchor="middle" class="badge-text" fill="#15803d">DirectQuery</text>
-<rect x="1155" y="50" width="137" height="630" rx="8" fill="#f5f0ff" stroke="#6b21a8" stroke-width="2"/>
-<rect x="1155" y="50" width="137" height="630" rx="8" fill="none" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6,3"/>
-<text x="1173" y="67" text-anchor="start" class="zone-lbl" fill="#6b21a8">CI / CD</text>
-<rect x="1163" y="75" width="121" height="125" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1170" y="83" width="26" height="26" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1183" y="101" text-anchor="middle" font-size="13" fill="#374151">&#x2699;</text>
-<text x="1201" y="93" text-anchor="start" class="svc-name">GitHub Actions</text>
-<text x="1170" y="111" text-anchor="start" class="detail">PR &#x2192; plan</text>
-<text x="1170" y="124" text-anchor="start" class="detail">merge &#x2192; apply</text>
-<text x="1170" y="137" text-anchor="start" class="detail">dev&#x2192;prod on tag</text>
-<rect x="1170" y="151" width="66" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
-<text x="1203" y="160.5" text-anchor="middle" class="badge-text" fill="#7e22ce">On push/tag</text>
-<text x="1223" y="215" text-anchor="middle" font-size="14" fill="#94a3b8">&#x21D5;</text>
-<rect x="1163" y="225" width="121" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1170" y="233" width="26" height="26" rx="4" fill="#ede9fe" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1183" y="251" text-anchor="middle" font-size="12" fill="#374151">&#x1F3D7;</text>
-<text x="1201" y="243" text-anchor="start" class="svc-name">Terraform</text>
-<text x="1170" y="261" text-anchor="start" class="detail">ADLS &#xb7; ADF</text>
-<text x="1170" y="274" text-anchor="start" class="detail">Key Vault</text>
-<text x="1170" y="287" text-anchor="start" class="detail">Cluster policy</text>
-<rect x="1170" y="300" width="28" height="13" rx="6" fill="#ede9fe" stroke="none" stroke-width="0"/>
-<text x="1184" y="309.5" text-anchor="middle" class="badge-text" fill="#7c3aed">IaC</text>
-<text x="1223" y="350" text-anchor="middle" font-size="14" fill="#94a3b8">&#x21D5;</text>
-<rect x="1163" y="360" width="121" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1170" y="368" width="26" height="26" rx="4" fill="#fff1f0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1183" y="386" text-anchor="middle" font-size="12" fill="#374151">&#x25C6;</text>
-<text x="1201" y="378" text-anchor="start" class="svc-name">DAB Bundle</text>
-<text x="1170" y="396" text-anchor="start" class="detail">databricks.yml</text>
-<text x="1170" y="409" text-anchor="start" class="detail">dev + prod targets</text>
-<text x="1170" y="422" text-anchor="start" class="detail">Smoke tests</text>
-<rect x="1170" y="435" width="58" height="13" rx="6" fill="#fff1f0" stroke="none" stroke-width="0"/>
-<text x="1199" y="444.5" text-anchor="middle" class="badge-text" fill="#dc2626">Declarative</text>
-<rect x="95" y="698" width="10" height="10" rx="2" fill="#f97316"/>
-<text x="109" y="707" text-anchor="start" class="legend-text">Bronze — Raw</text>
+<text x="36" y="100" text-anchor="middle" font-size="14" fill="#374151" font-family="Arial">&#x1F5C4;</text>
+<text x="54" y="92" text-anchor="start" class="sname">SQL Server 2022</text>
+<text x="23" y="110" text-anchor="start" class="det">Azure VM &#xb7; Express</text>
+<text x="23" y="124" text-anchor="start" class="det">transactions</text>
+<text x="23" y="137" text-anchor="start" class="det">customers &#xb7; products</text>
+<rect x="23" y="152" width="58" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
+<text x="52" y="161.5" text-anchor="middle" class="btxt" fill="#1d4ed8">~1 M rows</text>
+<rect x="23" y="170" width="70" height="13" rx="6" fill="#e0f2fe" stroke="none" stroke-width="0"/>
+<text x="58" y="179.5" text-anchor="middle" class="btxt" fill="#0369a1">UCI Retail II</text>
+<line x1="85" y1="229" x2="85" y2="249" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="16" y="253" width="139" height="112" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="23" y="261" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
+<text x="36" y="279" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x1F517;</text>
+<text x="54" y="271" text-anchor="start" class="sname">Self-Hosted IR</text>
+<text x="23" y="289" text-anchor="start" class="det">Bridges on-prem</text>
+<text x="23" y="302" text-anchor="start" class="det">network to ADF</text>
+<text x="23" y="315" text-anchor="start" class="det">via HTTPS</text>
+<rect x="23" y="331" width="72" height="13" rx="6" fill="#f3f4f6" stroke="none" stroke-width="0"/>
+<text x="59" y="340.5" text-anchor="middle" class="btxt" fill="#374151">On-prem bridge</text>
+<line x1="163" y1="309" x2="173" y2="309" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="168" y="304" text-anchor="middle" font-size="7.5" fill="#94a3b8">HTTPS</text>
+<rect x="173" y="38" width="1078" height="642" rx="8" fill="#f0f7ff" stroke="#0078D4" stroke-width="2"/>
+<text x="187" y="50" text-anchor="start" class="zlbl" fill="#0078D4">MICROSOFT AZURE  &#x2014;  australiaeast</text>
+<rect x="183" y="58" width="188" height="622" rx="6" fill="#fff5fb" stroke="#ec4899" stroke-width="1.5"/>
+<text x="193" y="72" text-anchor="start" class="slbl" fill="#be185d">AZURE DATA FACTORY</text>
+<rect x="191" y="80" width="172" height="178" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="198" y="88" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="211" y="106" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
+<text x="229" y="97" text-anchor="start" class="sname" font-size="9">pl_ingest_transactions</text>
+<text x="198" y="118" text-anchor="start" class="det">Watermark incremental</text>
+<text x="198" y="132" text-anchor="start" class="det">copy &#xb7; 1 M rows</text>
+<rect x="198" y="153" width="76" height="13" rx="6" fill="#ffedd5" stroke="none" stroke-width="0"/>
+<text x="236" y="162.5" text-anchor="middle" class="btxt" fill="#c2410c">Incremental</text>
+<line x1="277" y1="260" x2="277" y2="272" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="191" y="275" width="172" height="178" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="198" y="283" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="211" y="301" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
+<text x="229" y="292" text-anchor="start" class="sname" font-size="9">pl_ingest_customers</text>
+<text x="198" y="313" text-anchor="start" class="det">Full load &#xb7; daily</text>
+<text x="198" y="327" text-anchor="start" class="det">customers table</text>
+<rect x="198" y="348" width="64" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
+<text x="230" y="357.5" text-anchor="middle" class="btxt" fill="#1d4ed8">Full Load</text>
+<line x1="277" y1="455" x2="277" y2="467" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="191" y="470" width="172" height="178" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="198" y="478" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="211" y="496" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
+<text x="229" y="487" text-anchor="start" class="sname" font-size="9">pl_ingest_products</text>
+<text x="198" y="508" text-anchor="start" class="det">Full load &#xb7; daily</text>
+<text x="198" y="522" text-anchor="start" class="det">products table</text>
+<rect x="198" y="543" width="64" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
+<text x="230" y="552.5" text-anchor="middle" class="btxt" fill="#1d4ed8">Full Load</text>
+<line x1="371" y1="340" x2="393" y2="340" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="382" y="335" text-anchor="middle" font-size="7.5" fill="#94a3b8">Parquet</text>
+<rect x="393" y="58" width="160" height="622" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="403" y="72" text-anchor="start" class="slbl" fill="#7e22ce">ADLS GEN2 STORAGE</text>
+<rect x="401" y="80" width="144" height="165" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="408" y="88" width="26" height="26" rx="4" fill="#f3e8ff" stroke="#e5e7eb" stroke-width="1"/>
+<text x="421" y="106" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F5C2;</text>
+<text x="439" y="98" text-anchor="start" class="sname">stretaillhdev</text>
+<text x="408" y="116" text-anchor="start" class="det">bronze/ container</text>
+<text x="408" y="129" text-anchor="start" class="det">Raw Parquet files</text>
+<text x="408" y="142" text-anchor="start" class="det">landing zone</text>
+<rect x="408" y="157" width="62" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
+<text x="439" y="166.5" text-anchor="middle" class="btxt" fill="#7e22ce">Delta Lake</text>
+<rect x="408" y="174" width="62" height="13" rx="6" fill="#fff7ed" stroke="none" stroke-width="0"/>
+<text x="439" y="183.5" text-anchor="middle" class="btxt" fill="#c2410c">Append-only</text>
+<line x1="473" y1="250" x2="473" y2="270" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="401" y="275" width="144" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="408" y="283" width="26" height="26" rx="4" fill="#fef3c7" stroke="#e5e7eb" stroke-width="1"/>
+<text x="421" y="301" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F511;</text>
+<text x="439" y="293" text-anchor="start" class="sname">Key Vault</text>
+<text x="408" y="311" text-anchor="start" class="det">kv-retaillh-dev</text>
+<text x="408" y="324" text-anchor="start" class="det">SQL password</text>
+<text x="408" y="337" text-anchor="start" class="det">storage access key</text>
+<rect x="408" y="350" width="70" height="13" rx="6" fill="#fef3c7" stroke="none" stroke-width="0"/>
+<text x="443" y="359.5" text-anchor="middle" class="btxt" fill="#92400e">Secrets mgmt</text>
+<line x1="553" y1="340" x2="575" y2="340" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="564" y="335" text-anchor="middle" font-size="7.5" fill="#94a3b8">cloudFiles</text>
+<rect x="575" y="58" width="488" height="622" rx="6" fill="#fff8f5" stroke="#FF3621" stroke-width="1.5"/>
+<text x="585" y="72" text-anchor="start" class="slbl" fill="#FF3621">AZURE DATABRICKS  &#x2014;  Unity Catalog: retail_prod</text>
+<line x1="830" y1="80" x2="830" y2="666" stroke="#fcd5cc" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="585" y="85" text-anchor="start" class="slbl" fill="#FF3621">LAKEFLOW DECLARATIVE PIPELINE</text>
+<text x="585" y="98" text-anchor="start" class="det">Auto Loader (cloudFiles stream)</text>
+<rect x="585" y="107" width="238" height="80" rx="4" fill="#fff7ed" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="585" y="107" width="3" height="80" rx="1.5" fill="#f97316"/>
+<text x="595" y="121" class="mtitle" fill="#c2410c">Bronze Layer</text>
+<text x="595" y="135" class="mdet">raw_transactions &#xb7; raw_customers</text>
+<text x="595" y="148" class="mdet">raw_products</text>
+<text x="595" y="161" class="mdet">Schema enforcement</text>
+<text x="595" y="174" class="mdet">_quarantine_* tables</text>
+<line x1="704" y1="187" x2="704" y2="201" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="585" y="205" width="238" height="92" rx="4" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="585" y="205" width="3" height="92" rx="1.5" fill="#94a3b8"/>
+<text x="595" y="219" class="mtitle" fill="#475569">Silver Layer</text>
+<text x="595" y="233" class="mdet">Transactions: line_total &#xb7; cancel flag</text>
+<text x="595" y="246" class="mdet">Quality checks</text>
+<text x="595" y="259" class="mdet">Customers: email validation</text>
+<text x="595" y="272" class="mdet">Products: slow-mover flag</text>
+<line x1="704" y1="297" x2="704" y2="311" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="585" y="315" width="238" height="78" rx="4" fill="#fefce8" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="585" y="315" width="3" height="78" rx="1.5" fill="#eab308"/>
+<text x="595" y="329" class="mtitle" fill="#854d0e">Gold Layer</text>
+<text x="595" y="343" class="mdet">customer_360 (RFM scores)</text>
+<text x="595" y="356" class="mdet">daily_kpis: revenue &#xb7; AOV</text>
+<text x="595" y="369" class="mdet">cancel rate</text>
+<text x="595" y="382" class="mdet">demand_forecast table</text>
+<text x="840" y="85" text-anchor="start" class="slbl" fill="#7e22ce">ML JOBS  &#xb7;  WEEKLY RETRAIN</text>
+<rect x="840" y="94" width="215" height="95" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="840" y="94" width="3" height="95" rx="1.5" fill="#a855f7"/>
+<text x="850" y="108" class="mtitle" fill="#7e22ce">segmentation.py</text>
+<text x="850" y="122" class="mdet">K-Means &#xb7; K=4</text>
+<text x="850" y="135" class="mdet">Champions &#xb7; Loyal</text>
+<text x="850" y="148" class="mdet">At Risk &#xb7; Lost</text>
+<text x="850" y="161" class="mdet">Silhouette score &#x2192; MLflow</text>
+<line x1="947" y1="189" x2="947" y2="203" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="840" y="207" width="215" height="95" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="840" y="207" width="3" height="95" rx="1.5" fill="#a855f7"/>
+<text x="850" y="221" class="mtitle" fill="#7e22ce">demand_forecast.py</text>
+<text x="850" y="235" class="mdet">Prophet &#xb7; top 50 SKUs</text>
+<text x="850" y="248" class="mdet">12-week horizon</text>
+<text x="850" y="261" class="mdet">MAE + MAPE</text>
+<text x="850" y="274" class="mdet">Logged to MLflow</text>
+<line x1="947" y1="302" x2="947" y2="316" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="840" y="320" width="215" height="78" rx="4" fill="#f0fdf4" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="840" y="320" width="3" height="78" rx="1.5" fill="#16a34a"/>
+<text x="850" y="334" class="mtitle" fill="#15803d">model_validation.py</text>
+<text x="850" y="348" class="mdet">Metric threshold check</text>
+<text x="850" y="361" class="mdet">@champion alias set</text>
+<text x="850" y="374" class="mdet">Unity Catalog registry</text>
+<text x="850" y="387" class="mdet">Blocks CI/CD on fail</text>
+<line x1="1063" y1="340" x2="1085" y2="340" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="1074" y="335" text-anchor="middle" font-size="7.5" fill="#94a3b8">SQL endpoint</text>
+<rect x="1085" y="58" width="152" height="622" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="1095" y="72" text-anchor="start" class="slbl" fill="#15803d">SERVING LAYER</text>
+<rect x="1093" y="80" width="136" height="168" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1100" y="88" width="26" height="26" rx="4" fill="#ecfdf5" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1113" y="106" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x229E;</text>
+<text x="1131" y="98" text-anchor="start" class="sname">Databricks SQL</text>
+<text x="1100" y="116" text-anchor="start" class="det">SQL Warehouse</text>
+<text x="1100" y="129" text-anchor="start" class="det">customer_360</text>
+<text x="1100" y="142" text-anchor="start" class="det">daily_kpis</text>
+<text x="1100" y="155" text-anchor="start" class="det">demand_forecast</text>
+<rect x="1100" y="170" width="65" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
+<text x="1132" y="179.5" text-anchor="middle" class="btxt" fill="#15803d">Gold tables</text>
+<line x1="1161" y1="253" x2="1161" y2="273" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="1093" y="278" width="136" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1100" y="286" width="26" height="26" rx="4" fill="#fef9c3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1113" y="304" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F4CA;</text>
+<text x="1131" y="296" text-anchor="start" class="sname">Power BI</text>
+<text x="1100" y="314" text-anchor="start" class="det">DirectQuery mode</text>
+<text x="1100" y="327" text-anchor="start" class="det">Live dashboards</text>
+<text x="1100" y="340" text-anchor="start" class="det">No data import</text>
+<rect x="1100" y="354" width="65" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
+<text x="1132" y="363.5" text-anchor="middle" class="btxt" fill="#15803d">DirectQuery</text>
+<rect x="1260" y="50" width="153" height="630" rx="8" fill="#f5f0ff" stroke="#6b21a8" stroke-width="2"/>
+<rect x="1260" y="50" width="153" height="630" rx="8" fill="none" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6,3"/>
+<text x="1278" y="67" text-anchor="start" class="zlbl" fill="#6b21a8">CI / CD</text>
+<rect x="1268" y="75" width="137" height="125" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1275" y="83" width="26" height="26" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1288" y="101" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x2699;</text>
+<text x="1306" y="93" text-anchor="start" class="sname">GitHub Actions</text>
+<text x="1275" y="111" text-anchor="start" class="det">PR &#x2192; plan</text>
+<text x="1275" y="124" text-anchor="start" class="det">merge &#x2192; apply</text>
+<text x="1275" y="137" text-anchor="start" class="det">dev &#x2192; prod on tag</text>
+<rect x="1275" y="151" width="66" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
+<text x="1308" y="160.5" text-anchor="middle" class="btxt" fill="#7e22ce">On push/tag</text>
+<text x="1336" y="213" text-anchor="middle" font-size="14" fill="#94a3b8">&#x21D5;</text>
+<rect x="1268" y="222" width="137" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1275" y="230" width="26" height="26" rx="4" fill="#ede9fe" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1288" y="248" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x1F3D7;</text>
+<text x="1306" y="240" text-anchor="start" class="sname">Terraform</text>
+<text x="1275" y="258" text-anchor="start" class="det">ADLS &#xb7; ADF</text>
+<text x="1275" y="271" text-anchor="start" class="det">Key Vault</text>
+<text x="1275" y="284" text-anchor="start" class="det">Cluster policy</text>
+<rect x="1275" y="298" width="28" height="13" rx="6" fill="#ede9fe" stroke="none" stroke-width="0"/>
+<text x="1289" y="307.5" text-anchor="middle" class="btxt" fill="#7c3aed">IaC</text>
+<text x="1336" y="347" text-anchor="middle" font-size="14" fill="#94a3b8">&#x21D5;</text>
+<rect x="1268" y="355" width="137" height="115" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1275" y="363" width="26" height="26" rx="4" fill="#fff1f0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1288" y="381" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x25C6;</text>
+<text x="1306" y="373" text-anchor="start" class="sname">DAB Bundle</text>
+<text x="1275" y="391" text-anchor="start" class="det">databricks.yml</text>
+<text x="1275" y="404" text-anchor="start" class="det">dev + prod targets</text>
+<text x="1275" y="417" text-anchor="start" class="det">Smoke tests</text>
+<rect x="1275" y="431" width="60" height="13" rx="6" fill="#fff1f0" stroke="none" stroke-width="0"/>
+<text x="1305" y="440.5" text-anchor="middle" class="btxt" fill="#dc2626">Declarative</text>
+<rect x="80" y="698" width="10" height="10" rx="2" fill="#f97316"/>
+<text x="94" y="707" text-anchor="start" class="legtxt">Bronze &#x2014; Raw</text>
 <rect x="255" y="698" width="10" height="10" rx="2" fill="#94a3b8"/>
-<text x="269" y="707" text-anchor="start" class="legend-text">Silver — Cleansed</text>
-<rect x="415" y="698" width="10" height="10" rx="2" fill="#eab308"/>
-<text x="429" y="707" text-anchor="start" class="legend-text">Gold — Aggregated</text>
-<rect x="575" y="698" width="10" height="10" rx="2" fill="#a855f7"/>
-<text x="589" y="707" text-anchor="start" class="legend-text">ML Models — MLflow</text>
-<rect x="735" y="698" width="10" height="10" rx="2" fill="#0078D4"/>
-<text x="749" y="707" text-anchor="start" class="legend-text">Azure PaaS</text>
-<rect x="895" y="698" width="10" height="10" rx="2" fill="#FF3621"/>
-<text x="909" y="707" text-anchor="start" class="legend-text">Databricks</text>
-<rect x="1055" y="698" width="10" height="10" rx="2" fill="#16a34a"/>
-<text x="1069" y="707" text-anchor="start" class="legend-text">Serving / Power BI</text>
+<text x="269" y="707" text-anchor="start" class="legtxt">Silver &#x2014; Cleansed</text>
+<rect x="430" y="698" width="10" height="10" rx="2" fill="#eab308"/>
+<text x="444" y="707" text-anchor="start" class="legtxt">Gold &#x2014; Aggregated</text>
+<rect x="605" y="698" width="10" height="10" rx="2" fill="#a855f7"/>
+<text x="619" y="707" text-anchor="start" class="legtxt">ML Models &#x2014; MLflow</text>
+<rect x="780" y="698" width="10" height="10" rx="2" fill="#0078D4"/>
+<text x="794" y="707" text-anchor="start" class="legtxt">Azure PaaS</text>
+<rect x="955" y="698" width="10" height="10" rx="2" fill="#FF3621"/>
+<text x="969" y="707" text-anchor="start" class="legtxt">Databricks</text>
+<rect x="1130" y="698" width="10" height="10" rx="2" fill="#16a34a"/>
+<text x="1144" y="707" text-anchor="start" class="legtxt">Serving / Power BI</text>
 </svg>
