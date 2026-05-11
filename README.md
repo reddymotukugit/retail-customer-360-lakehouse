@@ -8,66 +8,9 @@ Azure data engineering project that ingests retail transaction data, processes i
 
 ## Architecture
 
+![Architecture](docs/architecture.svg)
+
 > Full editable diagram: [`docs/architecture.drawio`](docs/architecture.drawio) — open at [diagrams.net](https://app.diagrams.net)
-
-```mermaid
-flowchart TD
-    subgraph ONPREM["🖥️ On-Premises"]
-        SQL["SQL Server 2022\nExpress · VM\ntransactions · customers · products"]
-        SHIR["Self-Hosted IR\nBridges ADF to on-prem"]
-        SQL --> SHIR
-    end
-
-    subgraph ADF["☁️ Azure Data Factory"]
-        P1["pl_ingest_transactions\nWatermark incremental · 94s · 1M rows"]
-        P2["pl_ingest_customers\nFull daily · 37s"]
-        P3["pl_ingest_products\nFull daily · 36s"]
-    end
-
-    subgraph STORAGE["🗂️ ADLS Gen2 — stretaillhdev"]
-        BRONZE_C["bronze/\nRaw Parquet landing zone"]
-        KV["Key Vault\nkv-retaillh-dev\nstorage key · SQL password"]
-    end
-
-    subgraph DBX["⚡ Azure Databricks — Unity Catalog: retail_prod"]
-        AL["Auto Loader\ncloudFiles stream"]
-
-        subgraph LAKEFLOW["Lakeflow Declarative Pipeline"]
-            direction TB
-            B["🟠 Bronze\nraw_transactions · raw_customers · raw_products\nappend-only · schema enforcement · _quarantine_*"]
-            S["⬜ Silver\ntransactions — line_total · cancel flag · quality checks\ncustomers — email validation · deduplication\nproducts — slow-mover flag · orphan SKU"]
-            G["🟡 Gold\ncustomer_360 — RFM scores\ndaily_kpis — revenue · AOV · cancel rate\ndemand_forecast — Prophet output table"]
-            B --> S --> G
-        end
-
-        subgraph ML["🟣 ML Jobs — Weekly Retrain — Serverless"]
-            SEG["segmentation.py\nK-Means · K=4\nChampions · Loyal · At Risk · Lost"]
-            FC["demand_forecast.py\nProphet · top 50 SKUs\n12-week horizon · MAE + MAPE → MLflow"]
-            VAL["model_validation.py\nThreshold check\n@champion alias in Unity Catalog"]
-            SEG --> VAL
-            FC --> VAL
-        end
-
-        AL --> B
-        G --> SEG
-        G --> FC
-    end
-
-    subgraph SERVE["📊 Serving"]
-        DBSQL["Databricks SQL\nServerless warehouse"]
-        PBI["Power BI\nDirectQuery\ncustomer_360 · daily_kpis · demand_forecast"]
-        DBSQL --> PBI
-    end
-
-    subgraph CICD["🔄 CI/CD"]
-        GHA["GitHub Actions\nterraform plan/apply · bundle deploy\ndev → prod promotion on tag"]
-    end
-
-    SHIR -->|"HTTPS"| ADF
-    ADF -->|"Parquet"| BRONZE_C
-    BRONZE_C -->|"cloudFiles stream"| AL
-    DBX -->|"SQL endpoint"| DBSQL
-```
 
 ---
 
