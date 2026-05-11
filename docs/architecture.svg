@@ -1,215 +1,217 @@
-<svg viewBox="0 0 1420 575" xmlns="http://www.w3.org/2000/svg">
-<defs><style>
-text{font-family:Arial,Helvetica,sans-serif}
-</style>
+<svg viewBox="0 0 1520 650" xmlns="http://www.w3.org/2000/svg">
+<defs><style>text{font-family:Arial,Helvetica,sans-serif}</style>
 <marker id="ah"  markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker>
 <marker id="ahv" markerWidth="8" markerHeight="8" refX="3" refY="7" orient="auto"><path d="M0,0 L6,0 L3,8 z" fill="#94a3b8"/></marker>
 </defs>
-<rect width="1420" height="575" fill="white"/>
-<text x="710" y="22" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Retail Customer 360 &amp; Demand Forecasting &#x2014; Lakehouse Architecture</text>
-<text x="710" y="37" text-anchor="middle" font-size="9.5" fill="#666666" font-family="Arial,Helvetica,sans-serif">Azure Data Factory  &#xb7;  ADLS Gen2  &#xb7;  Azure Databricks  &#xb7;  Unity Catalog  &#xb7;  Power BI  &#xb7;  GitHub Actions</text>
-<rect x="8" y="50" width="152" height="432" rx="8" fill="#f0f4f8" stroke="#8a9bb0" stroke-width="2"/>
-<text x="20" y="67" text-anchor="start" font-size="8.5" fill="#4a5568" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">ON-PREMISES</text>
-<rect x="16" y="80" width="136" height="152" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="23" y="88" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
-<text x="36" y="106" text-anchor="middle" font-size="14" fill="#374151" font-family="Arial">&#x1F5C4;</text>
-<text x="54" y="98" text-anchor="start" font-size="10" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">SQL Server 2022</text>
-<text x="23" y="116" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Azure VM &#xb7; Express</text>
-<text x="23" y="129" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">transactions</text>
-<text x="23" y="142" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customers &#xb7; products</text>
-<rect x="23" y="158" width="58" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
-<text x="52" y="167.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d4ed8" font-family="Arial">~1 M rows</text>
-<rect x="23" y="176" width="70" height="13" rx="6" fill="#e0f2fe" stroke="none" stroke-width="0"/>
-<text x="58" y="185.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#0369a1" font-family="Arial">UCI Retail II</text>
-<line x1="84" y1="232" x2="84" y2="248" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="16" y="252" width="136" height="228" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="23" y="262" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
-<text x="36" y="280" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x1F517;</text>
-<text x="54" y="272" text-anchor="start" font-size="10" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Self-Hosted IR</text>
-<text x="23" y="292" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Bridges on-prem</text>
-<text x="23" y="305" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">network to ADF</text>
-<text x="23" y="318" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">via HTTPS</text>
-<rect x="23" y="334" width="72" height="13" rx="6" fill="#f3f4f6" stroke="none" stroke-width="0"/>
-<text x="59" y="343.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#374151" font-family="Arial">On-prem bridge</text>
-<line x1="160" y1="302" x2="170" y2="302" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
-<text x="165" y="313" text-anchor="middle" font-size="7" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">HTTPS</text>
-<rect x="170" y="38" width="1098" height="444" rx="8" fill="#f0f7ff" stroke="#0078D4" stroke-width="2"/>
-<text x="184" y="50" text-anchor="start" font-size="8.5" fill="#0078D4" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">MICROSOFT AZURE  &#x2014;  australiaeast</text>
-<rect x="180" y="58" width="187" height="424" rx="6" fill="#fff5fb" stroke="#ec4899" stroke-width="1.5"/>
-<text x="190" y="72" text-anchor="start" font-size="8" fill="#be185d" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">AZURE DATA FACTORY</text>
-<rect x="188" y="80" width="171" height="123" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="195" y="90" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="208" y="108" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
-<text x="226" y="99" text-anchor="start" font-size="9" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">pl_ingest_transactions</text>
-<text x="195" y="120" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Watermark incremental</text>
-<text x="195" y="134" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">copy &#xb7; 1 M rows</text>
-<rect x="195" y="154" width="78" height="13" rx="6" fill="#ffedd5" stroke="none" stroke-width="0"/>
-<text x="234" y="163.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#c2410c" font-family="Arial">Incremental</text>
-<line x1="273" y1="203" x2="273" y2="215" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="188" y="218" width="171" height="123" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="195" y="228" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="208" y="246" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
-<text x="226" y="237" text-anchor="start" font-size="9" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">pl_ingest_customers</text>
-<text x="195" y="258" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Full load &#xb7; daily</text>
-<text x="195" y="272" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customers table</text>
-<rect x="195" y="292" width="66" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
-<text x="228" y="301.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d4ed8" font-family="Arial">Full Load</text>
-<line x1="273" y1="341" x2="273" y2="353" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="188" y="356" width="171" height="123" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="195" y="366" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="208" y="384" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
-<text x="226" y="375" text-anchor="start" font-size="9" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">pl_ingest_products</text>
-<text x="195" y="396" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Full load &#xb7; daily</text>
-<text x="195" y="410" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">products table</text>
-<rect x="195" y="430" width="66" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
-<text x="228" y="439.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d4ed8" font-family="Arial">Full Load</text>
-<line x1="367" y1="296" x2="407" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
-<text x="387" y="307" text-anchor="middle" font-size="7" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">Parquet</text>
-<rect x="407" y="58" width="157" height="424" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5"/>
-<text x="417" y="72" text-anchor="start" font-size="8" fill="#7e22ce" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">ADLS GEN2 STORAGE</text>
-<rect x="415" y="80" width="141" height="191" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="422" y="90" width="26" height="26" rx="4" fill="#f3e8ff" stroke="#e5e7eb" stroke-width="1"/>
-<text x="435" y="108" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F5C2;</text>
-<text x="453" y="100" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">stretaillhdev</text>
-<text x="422" y="120" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">bronze/ container</text>
-<text x="422" y="133" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Raw Parquet files</text>
-<text x="422" y="146" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">landing zone</text>
-<rect x="422" y="162" width="62" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
-<text x="453" y="171.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7e22ce" font-family="Arial">Delta Lake</text>
-<rect x="422" y="180" width="62" height="13" rx="6" fill="#fff7ed" stroke="none" stroke-width="0"/>
-<text x="453" y="189.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#c2410c" font-family="Arial">Append-only</text>
-<line x1="485" y1="271" x2="485" y2="286" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="415" y="289" width="141" height="191" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="422" y="299" width="26" height="26" rx="4" fill="#fef3c7" stroke="#e5e7eb" stroke-width="1"/>
-<text x="435" y="317" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F511;</text>
-<text x="453" y="309" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Key Vault</text>
-<text x="422" y="329" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">kv-retaillh-dev</text>
-<text x="422" y="342" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">SQL password</text>
-<text x="422" y="355" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">storage access key</text>
-<rect x="422" y="371" width="70" height="13" rx="6" fill="#fef3c7" stroke="none" stroke-width="0"/>
-<text x="457" y="380.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#92400e" font-family="Arial">Secrets mgmt</text>
-<line x1="564" y1="296" x2="604" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
-<text x="584" y="307" text-anchor="middle" font-size="7" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">cloudFiles</text>
-<rect x="604" y="58" width="486" height="424" rx="6" fill="#fff8f5" stroke="#FF3621" stroke-width="1.5"/>
-<text x="614" y="72" text-anchor="start" font-size="8" fill="#FF3621" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">AZURE DATABRICKS  &#x2014;  Unity Catalog: retail_prod</text>
-<line x1="862" y1="78" x2="862" y2="472" stroke="#fcd5cc" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="614" y="75" text-anchor="start" font-size="8" fill="#FF3621" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">LAKEFLOW DECLARATIVE PIPELINE</text>
-<text x="614" y="88" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Auto Loader (cloudFiles stream)</text>
-<rect x="614" y="96" width="240" height="119" rx="4" fill="#fff7ed" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="614" y="96" width="3" height="119" rx="1.5" fill="#f97316"/>
-<text x="624" y="110" text-anchor="start" font-size="9" fill="#c2410c" font-weight="700" font-family="Arial,Helvetica,sans-serif">Bronze Layer</text>
-<text x="624" y="123" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">raw_transactions &#xb7; raw_customers</text>
-<text x="624" y="135" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">raw_products</text>
-<text x="624" y="147" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Schema enforcement</text>
-<text x="624" y="159" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">_quarantine_* tables</text>
-<line x1="734" y1="215" x2="734" y2="227" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="614" y="229" width="240" height="119" rx="4" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="614" y="229" width="3" height="119" rx="1.5" fill="#94a3b8"/>
-<text x="624" y="243" text-anchor="start" font-size="9" fill="#475569" font-weight="700" font-family="Arial,Helvetica,sans-serif">Silver Layer</text>
-<text x="624" y="256" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Transactions: line_total &#xb7; cancel flag</text>
-<text x="624" y="268" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Quality checks</text>
-<text x="624" y="280" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Customers: email validation</text>
-<text x="624" y="292" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Products: slow-mover flag</text>
-<line x1="734" y1="348" x2="734" y2="360" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="614" y="362" width="240" height="118" rx="4" fill="#fefce8" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="614" y="362" width="3" height="118" rx="1.5" fill="#eab308"/>
-<text x="624" y="376" text-anchor="start" font-size="9" fill="#854d0e" font-weight="700" font-family="Arial,Helvetica,sans-serif">Gold Layer</text>
-<text x="624" y="389" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customer_360 (RFM scores)</text>
-<text x="624" y="401" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">daily_kpis: revenue &#xb7; AOV</text>
-<text x="624" y="413" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">cancel rate</text>
-<text x="624" y="425" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">demand_forecast table</text>
-<text x="870" y="75" text-anchor="start" font-size="8" fill="#7e22ce" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">ML JOBS  &#xb7;  WEEKLY RETRAIN</text>
-<rect x="870" y="84" width="212" height="124" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="870" y="84" width="3" height="124" rx="1.5" fill="#a855f7"/>
-<text x="880" y="98" text-anchor="start" font-size="9" fill="#7e22ce" font-weight="700" font-family="Arial,Helvetica,sans-serif">segmentation.py</text>
-<text x="880" y="111" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">K-Means &#xb7; K=4</text>
-<text x="880" y="123" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Champions &#xb7; Loyal</text>
-<text x="880" y="135" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">At Risk &#xb7; Lost</text>
-<text x="880" y="147" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Silhouette score &#x2192; MLflow</text>
-<line x1="976" y1="208" x2="976" y2="220" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="870" y="222" width="212" height="124" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="870" y="222" width="3" height="124" rx="1.5" fill="#a855f7"/>
-<text x="880" y="236" text-anchor="start" font-size="9" fill="#7e22ce" font-weight="700" font-family="Arial,Helvetica,sans-serif">demand_forecast.py</text>
-<text x="880" y="249" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Prophet &#xb7; top 50 SKUs</text>
-<text x="880" y="261" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">12-week horizon</text>
-<text x="880" y="273" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">MAE + MAPE</text>
-<text x="880" y="285" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Logged to MLflow</text>
-<line x1="976" y1="346" x2="976" y2="358" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="870" y="360" width="212" height="120" rx="4" fill="#f0fdf4" stroke="#e5e7eb" stroke-width="1"/>
-<rect x="870" y="360" width="3" height="120" rx="1.5" fill="#16a34a"/>
-<text x="880" y="374" text-anchor="start" font-size="9" fill="#15803d" font-weight="700" font-family="Arial,Helvetica,sans-serif">model_validation.py</text>
-<text x="880" y="387" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Metric threshold check</text>
-<text x="880" y="399" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">@champion alias set</text>
-<text x="880" y="411" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Unity Catalog registry</text>
-<text x="880" y="423" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Blocks CI/CD on fail</text>
-<line x1="1090" y1="296" x2="1130" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
-<text x="1110" y="307" text-anchor="middle" font-size="7" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">SQL</text>
-<rect x="1130" y="58" width="148" height="424" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-<text x="1140" y="72" text-anchor="start" font-size="8" fill="#15803d" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">SERVING LAYER</text>
-<rect x="1138" y="80" width="132" height="191" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1145" y="90" width="26" height="26" rx="4" fill="#ecfdf5" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1158" y="108" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x229E;</text>
-<text x="1176" y="100" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Databricks SQL</text>
-<text x="1145" y="120" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">SQL Warehouse</text>
-<text x="1145" y="133" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customer_360</text>
-<text x="1145" y="146" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">daily_kpis</text>
-<text x="1145" y="159" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">demand_forecast</text>
-<rect x="1145" y="175" width="62" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
-<text x="1176" y="184.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#15803d" font-family="Arial">Gold tables</text>
-<line x1="1204" y1="271" x2="1204" y2="286" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
-<rect x="1138" y="289" width="132" height="191" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1145" y="299" width="26" height="26" rx="4" fill="#fef9c3" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1158" y="317" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F4CA;</text>
-<text x="1176" y="309" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Power BI</text>
-<text x="1145" y="329" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">DirectQuery mode</text>
-<text x="1145" y="342" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Live dashboards</text>
-<text x="1145" y="355" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">No data import</text>
-<rect x="1145" y="371" width="65" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
-<text x="1177" y="380.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#15803d" font-family="Arial">DirectQuery</text>
-<rect x="1277" y="50" width="138" height="432" rx="8" fill="#f5f0ff" stroke="#6b21a8" stroke-width="2"/>
-<rect x="1277" y="50" width="138" height="432" rx="8" fill="none" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6,3"/>
-<text x="1295" y="67" text-anchor="start" font-size="8.5" fill="#6b21a8" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">CI / CD</text>
-<rect x="1285" y="80" width="122" height="121" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1292" y="90" width="26" height="26" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1305" y="108" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x2699;</text>
-<text x="1323" y="100" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">GitHub Actions</text>
-<text x="1292" y="120" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">PR &#x2192; plan</text>
-<text x="1292" y="134" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">merge &#x2192; apply</text>
-<text x="1292" y="148" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">dev &#x2192; prod on tag</text>
-<rect x="1292" y="179" width="66" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
-<text x="1325" y="188.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7e22ce" font-family="Arial">On push/tag</text>
-<text x="1346" y="212" text-anchor="middle" font-size="14" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">&#x21D5;</text>
-<rect x="1285" y="219" width="122" height="121" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1292" y="229" width="26" height="26" rx="4" fill="#ede9fe" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1305" y="247" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x1F3D7;</text>
-<text x="1323" y="239" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Terraform</text>
-<text x="1292" y="259" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">ADLS &#xb7; ADF</text>
-<text x="1292" y="273" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Key Vault</text>
-<text x="1292" y="287" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Cluster policy</text>
-<rect x="1292" y="318" width="28" height="13" rx="6" fill="#ede9fe" stroke="none" stroke-width="0"/>
-<text x="1306" y="327.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7c3aed" font-family="Arial">IaC</text>
-<text x="1346" y="351" text-anchor="middle" font-size="14" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">&#x21D5;</text>
-<rect x="1285" y="358" width="122" height="121" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
-<rect x="1292" y="368" width="26" height="26" rx="4" fill="#fff1f0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="1305" y="386" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x25C6;</text>
-<text x="1323" y="378" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">DAB Bundle</text>
-<text x="1292" y="398" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">databricks.yml</text>
-<text x="1292" y="412" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">dev + prod targets</text>
-<text x="1292" y="426" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Smoke tests</text>
-<rect x="1292" y="457" width="62" height="13" rx="6" fill="#fff1f0" stroke="none" stroke-width="0"/>
-<text x="1323" y="466.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#dc2626" font-family="Arial">Declarative</text>
-<rect x="75" y="498" width="10" height="10" rx="2" fill="#f97316" stroke="none" stroke-width="0"/>
-<text x="89" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Bronze &#x2014; Raw</text>
-<rect x="253" y="498" width="10" height="10" rx="2" fill="#94a3b8" stroke="none" stroke-width="0"/>
-<text x="267" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Silver &#x2014; Cleansed</text>
-<rect x="431" y="498" width="10" height="10" rx="2" fill="#eab308" stroke="none" stroke-width="0"/>
-<text x="445" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Gold &#x2014; Aggregated</text>
-<rect x="609" y="498" width="10" height="10" rx="2" fill="#a855f7" stroke="none" stroke-width="0"/>
-<text x="623" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">ML Models &#x2014; MLflow</text>
-<rect x="787" y="498" width="10" height="10" rx="2" fill="#0078D4" stroke="none" stroke-width="0"/>
-<text x="801" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Azure PaaS</text>
-<rect x="965" y="498" width="10" height="10" rx="2" fill="#FF3621" stroke="none" stroke-width="0"/>
-<text x="979" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Databricks</text>
-<rect x="1143" y="498" width="10" height="10" rx="2" fill="#16a34a" stroke="none" stroke-width="0"/>
-<text x="1157" y="507" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Serving / Power BI</text>
+<rect width="1520" height="650" fill="white"/>
+<text x="760" y="22" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Retail Customer 360 &amp; Demand Forecasting &#x2014; Lakehouse Architecture</text>
+<text x="760" y="37" text-anchor="middle" font-size="9.5" fill="#666666" font-family="Arial,Helvetica,sans-serif">Azure Data Factory  &#xb7;  ADLS Gen2  &#xb7;  Azure Databricks  &#xb7;  Unity Catalog  &#xb7;  Power BI  &#xb7;  GitHub Actions</text>
+<rect x="8" y="50" width="155" height="540" rx="8" fill="#f0f4f8" stroke="#8a9bb0" stroke-width="2"/>
+<text x="20" y="68" text-anchor="start" font-size="8.5" fill="#4a5568" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">ON-PREMISES</text>
+<rect x="16" y="82" width="139" height="158" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="23" y="92" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
+<text x="36" y="110" text-anchor="middle" font-size="14" fill="#374151" font-family="Arial">&#x1F5C4;</text>
+<text x="54" y="102" text-anchor="start" font-size="10" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">SQL Server 2022</text>
+<text x="23" y="120" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Azure VM &#xb7; Express</text>
+<text x="23" y="133" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">transactions</text>
+<text x="23" y="146" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customers &#xb7; products</text>
+<rect x="23" y="162" width="58" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
+<text x="52" y="171.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d4ed8" font-family="Arial">~1 M rows</text>
+<rect x="23" y="179" width="70" height="13" rx="6" fill="#e0f2fe" stroke="none" stroke-width="0"/>
+<text x="58" y="188.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#0369a1" font-family="Arial">UCI Retail II</text>
+<line x1="85" y1="240" x2="85" y2="260" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="16" y="264" width="139" height="318" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="23" y="274" width="26" height="26" rx="4" fill="#e8f4fd" stroke="#e5e7eb" stroke-width="1"/>
+<text x="36" y="292" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x1F517;</text>
+<text x="54" y="284" text-anchor="start" font-size="10" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Self-Hosted IR</text>
+<text x="23" y="304" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Bridges on-prem</text>
+<text x="23" y="317" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">network to ADF</text>
+<text x="23" y="330" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">via HTTPS</text>
+<rect x="23" y="346" width="72" height="13" rx="6" fill="#f3f4f6" stroke="none" stroke-width="0"/>
+<text x="59" y="355.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#374151" font-family="Arial">On-prem bridge</text>
+<line x1="163" y1="319" x2="173" y2="319" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="151" y="304" width="33" height="12" rx="3" fill="white" stroke="#d1d5db" stroke-width="0.8"/>
+<text x="168" y="313" text-anchor="middle" font-size="7" fill="#64748b" font-weight="700" font-family="Arial,Helvetica,sans-serif">HTTPS</text>
+<rect x="173" y="38" width="1175" height="552" rx="8" fill="#f0f7ff" stroke="#0078D4" stroke-width="2"/>
+<text x="187" y="52" text-anchor="start" font-size="8.5" fill="#0078D4" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">MICROSOFT AZURE  &#x2014;  australiaeast</text>
+<rect x="183" y="58" width="192" height="532" rx="6" fill="#fff5fb" stroke="#ec4899" stroke-width="1.5"/>
+<text x="193" y="73" text-anchor="start" font-size="8" fill="#be185d" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">AZURE DATA FACTORY</text>
+<rect x="191" y="82" width="176" height="156" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="198" y="92" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="211" y="110" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
+<text x="229" y="102" text-anchor="start" font-size="9" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">pl_ingest_transactions</text>
+<text x="198" y="124" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Watermark incremental</text>
+<text x="198" y="138" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">copy &#xb7; 1 M rows</text>
+<rect x="198" y="160" width="78" height="13" rx="6" fill="#ffedd5" stroke="none" stroke-width="0"/>
+<text x="237" y="169.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#c2410c" font-family="Arial">Incremental</text>
+<line x1="279" y1="238" x2="279" y2="250" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="191" y="253" width="176" height="156" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="198" y="263" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="211" y="281" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
+<text x="229" y="273" text-anchor="start" font-size="9" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">pl_ingest_customers</text>
+<text x="198" y="295" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Full load &#xb7; daily</text>
+<text x="198" y="309" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customers table</text>
+<rect x="198" y="331" width="66" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
+<text x="231" y="340.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d4ed8" font-family="Arial">Full Load</text>
+<line x1="279" y1="409" x2="279" y2="421" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="191" y="424" width="176" height="156" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="198" y="434" width="26" height="26" rx="4" fill="#fce7f3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="211" y="452" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x26A1;</text>
+<text x="229" y="444" text-anchor="start" font-size="9" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">pl_ingest_products</text>
+<text x="198" y="466" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Full load &#xb7; daily</text>
+<text x="198" y="480" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">products table</text>
+<rect x="198" y="502" width="66" height="13" rx="6" fill="#dbeafe" stroke="none" stroke-width="0"/>
+<text x="231" y="511.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d4ed8" font-family="Arial">Full Load</text>
+<line x1="375" y1="202" x2="417" y2="202" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="374" y="187" width="43" height="12" rx="3" fill="white" stroke="#d1d5db" stroke-width="0.8"/>
+<text x="396" y="196" text-anchor="middle" font-size="7" fill="#64748b" font-weight="700" font-family="Arial,Helvetica,sans-serif">Parquet</text>
+<rect x="417" y="58" width="165" height="532" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="427" y="73" text-anchor="start" font-size="8" fill="#7e22ce" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">ADLS GEN2 STORAGE</text>
+<rect x="425" y="82" width="149" height="241" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="432" y="92" width="26" height="26" rx="4" fill="#f3e8ff" stroke="#e5e7eb" stroke-width="1"/>
+<text x="445" y="110" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F5C2;</text>
+<text x="463" y="102" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">stretaillhdev</text>
+<text x="432" y="124" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">bronze/ container</text>
+<text x="432" y="137" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Raw Parquet files</text>
+<text x="432" y="150" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">landing zone</text>
+<rect x="432" y="167" width="62" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
+<text x="463" y="176.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7e22ce" font-family="Arial">Delta Lake</text>
+<rect x="432" y="185" width="62" height="13" rx="6" fill="#fff7ed" stroke="none" stroke-width="0"/>
+<text x="463" y="194.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#c2410c" font-family="Arial">Append-only</text>
+<line x1="499" y1="323" x2="499" y2="339" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="425" y="343" width="149" height="239" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="432" y="353" width="26" height="26" rx="4" fill="#fef3c7" stroke="#e5e7eb" stroke-width="1"/>
+<text x="445" y="371" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F511;</text>
+<text x="463" y="363" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Key Vault</text>
+<text x="432" y="385" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">kv-retaillh-dev</text>
+<text x="432" y="398" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">SQL password</text>
+<text x="432" y="411" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">storage access key</text>
+<rect x="432" y="428" width="70" height="13" rx="6" fill="#fef3c7" stroke="none" stroke-width="0"/>
+<text x="467" y="437.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#92400e" font-family="Arial">Secrets mgmt</text>
+<line x1="582" y1="202" x2="624" y2="202" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="584" y="187" width="38" height="12" rx="3" fill="white" stroke="#d1d5db" stroke-width="0.8"/>
+<text x="603" y="196" text-anchor="middle" font-size="7" fill="#64748b" font-weight="700" font-family="Arial,Helvetica,sans-serif">stream</text>
+<rect x="624" y="58" width="522" height="532" rx="6" fill="#fff8f5" stroke="#FF3621" stroke-width="1.5"/>
+<text x="634" y="73" text-anchor="start" font-size="8" fill="#FF3621" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">AZURE DATABRICKS  &#x2014;  Unity Catalog: retail_prod</text>
+<line x1="896" y1="80" x2="896" y2="582" stroke="#fcd5cc" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="634" y="87" text-anchor="start" font-size="8" fill="#FF3621" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">LAKEFLOW DECLARATIVE PIPELINE</text>
+<text x="634" y="100" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Auto Loader (cloudFiles stream)</text>
+<rect x="634" y="132" width="254" height="140" rx="4" fill="#fff7ed" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="634" y="132" width="3" height="140" rx="1.5" fill="#f97316"/>
+<text x="644" y="147" text-anchor="start" font-size="9" fill="#c2410c" font-weight="700" font-family="Arial,Helvetica,sans-serif">Bronze Layer</text>
+<text x="644" y="161" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">raw_transactions &#xb7; raw_customers</text>
+<text x="644" y="174" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">raw_products</text>
+<text x="644" y="187" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Schema enforcement</text>
+<text x="644" y="200" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">_quarantine_* tables</text>
+<line x1="761" y1="272" x2="761" y2="284" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="634" y="286" width="254" height="140" rx="4" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="634" y="286" width="3" height="140" rx="1.5" fill="#94a3b8"/>
+<text x="644" y="301" text-anchor="start" font-size="9" fill="#475569" font-weight="700" font-family="Arial,Helvetica,sans-serif">Silver Layer</text>
+<text x="644" y="315" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Transactions: line_total &#xb7; cancel flag</text>
+<text x="644" y="328" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Quality checks</text>
+<text x="644" y="341" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Customers: email validation</text>
+<text x="644" y="354" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Products: slow-mover flag</text>
+<line x1="761" y1="426" x2="761" y2="438" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="634" y="440" width="254" height="142" rx="4" fill="#fefce8" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="634" y="440" width="3" height="142" rx="1.5" fill="#eab308"/>
+<text x="644" y="455" text-anchor="start" font-size="9" fill="#854d0e" font-weight="700" font-family="Arial,Helvetica,sans-serif">Gold Layer</text>
+<text x="644" y="469" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customer_360 (RFM scores)</text>
+<text x="644" y="482" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">daily_kpis: revenue &#xb7; AOV</text>
+<text x="644" y="495" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">cancel rate</text>
+<text x="644" y="508" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">demand_forecast table</text>
+<text x="904" y="87" text-anchor="start" font-size="8" fill="#7e22ce" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">ML JOBS  &#xb7;  WEEKLY RETRAIN</text>
+<rect x="904" y="110" width="234" height="148" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="904" y="110" width="3" height="148" rx="1.5" fill="#a855f7"/>
+<text x="914" y="125" text-anchor="start" font-size="9" fill="#7e22ce" font-weight="700" font-family="Arial,Helvetica,sans-serif">segmentation.py</text>
+<text x="914" y="139" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">K-Means &#xb7; K=4</text>
+<text x="914" y="152" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Champions &#xb7; Loyal</text>
+<text x="914" y="165" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">At Risk &#xb7; Lost</text>
+<text x="914" y="178" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Silhouette score &#x2192; MLflow</text>
+<line x1="1021" y1="258" x2="1021" y2="270" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="904" y="272" width="234" height="148" rx="4" fill="#fdf4ff" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="904" y="272" width="3" height="148" rx="1.5" fill="#a855f7"/>
+<text x="914" y="287" text-anchor="start" font-size="9" fill="#7e22ce" font-weight="700" font-family="Arial,Helvetica,sans-serif">demand_forecast.py</text>
+<text x="914" y="301" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Prophet &#xb7; top 50 SKUs</text>
+<text x="914" y="314" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">12-week horizon</text>
+<text x="914" y="327" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">MAE + MAPE</text>
+<text x="914" y="340" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Logged to MLflow</text>
+<line x1="1021" y1="420" x2="1021" y2="432" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="904" y="434" width="234" height="148" rx="4" fill="#f0fdf4" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="904" y="434" width="3" height="148" rx="1.5" fill="#16a34a"/>
+<text x="914" y="449" text-anchor="start" font-size="9" fill="#15803d" font-weight="700" font-family="Arial,Helvetica,sans-serif">model_validation.py</text>
+<text x="914" y="463" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Metric threshold check</text>
+<text x="914" y="476" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">@champion alias set</text>
+<text x="914" y="489" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Unity Catalog registry</text>
+<text x="914" y="502" text-anchor="start" font-size="8" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Blocks CI/CD on fail</text>
+<line x1="1146" y1="202" x2="1188" y2="202" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="1155" y="187" width="23" height="12" rx="3" fill="white" stroke="#d1d5db" stroke-width="0.8"/>
+<text x="1167" y="196" text-anchor="middle" font-size="7" fill="#64748b" font-weight="700" font-family="Arial,Helvetica,sans-serif">SQL</text>
+<rect x="1188" y="58" width="150" height="532" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="1198" y="73" text-anchor="start" font-size="8" fill="#15803d" font-weight="700" letter-spacing="0.5" font-family="Arial,Helvetica,sans-serif">SERVING LAYER</text>
+<rect x="1196" y="82" width="134" height="241" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1203" y="92" width="26" height="26" rx="4" fill="#ecfdf5" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1216" y="110" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x229E;</text>
+<text x="1234" y="102" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Databricks SQL</text>
+<text x="1203" y="124" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">SQL Warehouse</text>
+<text x="1203" y="137" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">customer_360</text>
+<text x="1203" y="150" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">daily_kpis</text>
+<text x="1203" y="163" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">demand_forecast</text>
+<rect x="1203" y="180" width="62" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
+<text x="1234" y="189.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#15803d" font-family="Arial">Gold tables</text>
+<line x1="1263" y1="323" x2="1263" y2="339" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ahv)"/>
+<rect x="1196" y="343" width="134" height="239" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1203" y="353" width="26" height="26" rx="4" fill="#fef9c3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1216" y="371" text-anchor="middle" font-size="13" fill="#374151" font-family="Arial">&#x1F4CA;</text>
+<text x="1234" y="363" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Power BI</text>
+<text x="1203" y="385" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">DirectQuery mode</text>
+<text x="1203" y="398" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Live dashboards</text>
+<text x="1203" y="411" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">No data import</text>
+<rect x="1203" y="428" width="65" height="13" rx="6" fill="#dcfce7" stroke="none" stroke-width="0"/>
+<text x="1235" y="437.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#15803d" font-family="Arial">DirectQuery</text>
+<rect x="1356" y="50" width="152" height="540" rx="8" fill="#f5f0ff" stroke="#6b21a8" stroke-width="2"/>
+<rect x="1356" y="50" width="152" height="540" rx="8" fill="none" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6,3"/>
+<text x="1374" y="68" text-anchor="start" font-size="8.5" fill="#6b21a8" font-weight="700" letter-spacing="0.7" font-family="Arial,Helvetica,sans-serif">CI / CD</text>
+<rect x="1364" y="82" width="136" height="154" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1371" y="92" width="26" height="26" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1384" y="110" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x2699;</text>
+<text x="1402" y="102" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">GitHub Actions</text>
+<text x="1371" y="124" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">PR &#x2192; plan</text>
+<text x="1371" y="138" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">merge &#x2192; apply</text>
+<text x="1371" y="152" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">dev &#x2192; prod on tag</text>
+<rect x="1371" y="214" width="66" height="13" rx="6" fill="#f3e8ff" stroke="none" stroke-width="0"/>
+<text x="1404" y="223.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7e22ce" font-family="Arial">On push/tag</text>
+<text x="1432" y="247" text-anchor="middle" font-size="14" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">&#x21D5;</text>
+<rect x="1364" y="254" width="136" height="154" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1371" y="264" width="26" height="26" rx="4" fill="#ede9fe" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1384" y="282" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x1F3D7;</text>
+<text x="1402" y="274" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">Terraform</text>
+<text x="1371" y="296" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">ADLS &#xb7; ADF</text>
+<text x="1371" y="310" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Key Vault</text>
+<text x="1371" y="324" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Cluster policy</text>
+<rect x="1371" y="386" width="28" height="13" rx="6" fill="#ede9fe" stroke="none" stroke-width="0"/>
+<text x="1385" y="395.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7c3aed" font-family="Arial">IaC</text>
+<text x="1432" y="419" text-anchor="middle" font-size="14" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif">&#x21D5;</text>
+<rect x="1364" y="426" width="136" height="154" rx="5" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+<rect x="1371" y="436" width="26" height="26" rx="4" fill="#fff1f0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="1384" y="454" text-anchor="middle" font-size="12" fill="#374151" font-family="Arial">&#x25C6;</text>
+<text x="1402" y="446" text-anchor="start" font-size="9.5" fill="#1a1a1a" font-weight="700" font-family="Arial,Helvetica,sans-serif">DAB Bundle</text>
+<text x="1371" y="468" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">databricks.yml</text>
+<text x="1371" y="482" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">dev + prod targets</text>
+<text x="1371" y="496" text-anchor="start" font-size="8.5" fill="#64748b" font-family="Arial,Helvetica,sans-serif">Smoke tests</text>
+<rect x="1371" y="558" width="62" height="13" rx="6" fill="#fff1f0" stroke="none" stroke-width="0"/>
+<text x="1402" y="567.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#dc2626" font-family="Arial">Declarative</text>
+<rect x="75" y="606" width="10" height="10" rx="2" fill="#f97316" stroke="none" stroke-width="0"/>
+<text x="89" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Bronze &#x2014; Raw</text>
+<rect x="267" y="606" width="10" height="10" rx="2" fill="#94a3b8" stroke="none" stroke-width="0"/>
+<text x="281" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Silver &#x2014; Cleansed</text>
+<rect x="459" y="606" width="10" height="10" rx="2" fill="#eab308" stroke="none" stroke-width="0"/>
+<text x="473" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Gold &#x2014; Aggregated</text>
+<rect x="651" y="606" width="10" height="10" rx="2" fill="#a855f7" stroke="none" stroke-width="0"/>
+<text x="665" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">ML Models &#x2014; MLflow</text>
+<rect x="843" y="606" width="10" height="10" rx="2" fill="#0078D4" stroke="none" stroke-width="0"/>
+<text x="857" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Azure PaaS</text>
+<rect x="1035" y="606" width="10" height="10" rx="2" fill="#FF3621" stroke="none" stroke-width="0"/>
+<text x="1049" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Databricks</text>
+<rect x="1227" y="606" width="10" height="10" rx="2" fill="#16a34a" stroke="none" stroke-width="0"/>
+<text x="1241" y="615" text-anchor="start" font-size="9" fill="#555" font-family="Arial,Helvetica,sans-serif">Serving / Power BI</text>
 </svg>
