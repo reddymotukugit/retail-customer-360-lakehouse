@@ -38,3 +38,4 @@ secrets.json
 
 # macOS
 .DS_Store
+infra/terraform.tfvars
