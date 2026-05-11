@@ -26,15 +26,15 @@ jobs:
         with:
           python-version: "3.11"
 
+      # -----------------------------------------------------------------------
+      # Install new Go-based Databricks CLI (v0.200+) — required for `bundle`.
+      # The old `pip install databricks-cli` installs the deprecated Python CLI
+      # which does NOT support `bundle` commands.
+      # The new CLI reads DATABRICKS_HOST + DATABRICKS_TOKEN from env vars
+      # automatically — no explicit configure step needed.
+      # -----------------------------------------------------------------------
       - name: Install Databricks CLI
-        run: pip install databricks-cli databricks-sdk
-
-      - name: Configure Databricks CLI
-        run: |
-          databricks configure --token <<EOF
-          ${{ secrets.DATABRICKS_HOST }}
-          ${{ secrets.DATABRICKS_TOKEN }}
-          EOF
+        uses: databricks/setup-cli@main
 
       # -----------------------------------------------------------------------
       # Validate bundle before deploying
@@ -51,74 +51,77 @@ jobs:
         run: |
           databricks bundle deploy --target prod \
             --var "storage_account=${{ secrets.STORAGE_ACCOUNT_NAME }}" \
-            --var "cluster_policy_id=${{ secrets.CLUSTER_POLICY_ID }}" \
-            --var "databricks_host=${{ secrets.DATABRICKS_HOST }}"
+            --var "cluster_policy_id=${{ secrets.CLUSTER_POLICY_ID }}"
 
       # -----------------------------------------------------------------------
-      # Smoke test — single-day backfill, verify row counts non-zero
+      # Smoke test — trigger the daily pipeline job and wait for completion
+      # New CLI syntax: positional JOB_ID, not --job-name flag
       # -----------------------------------------------------------------------
       - name: Smoke Test
         working-directory: databricks
         run: |
-          RUN_ID=$(databricks jobs run-now \
-            --job-name "retail-daily-pipeline-prod" \
-            --output json | python3 -c "import sys,json; print(json.load(sys.stdin)['run_id'])")
+          # Resolve job ID by name (bundle deploy registers it)
+          JOB_ID=$(databricks jobs list --output json \
+            | python3 -c "
+import sys, json
+jobs = json.load(sys.stdin)
+match = [j['job_id'] for j in jobs if j['settings']['name'] == 'retail-daily-pipeline-prod']
+if not match:
+    print('ERROR: job not found', file=sys.stderr); exit(1)
+print(match[0])
+")
+          echo "Triggering smoke test on job ID: $JOB_ID"
 
-          echo "Smoke test job run_id: $RUN_ID"
+          RUN_ID=$(databricks jobs run-now "$JOB_ID" --output json \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['run_id'])")
+          echo "Run ID: $RUN_ID"
 
-          # Poll until done (max 30 min)
+          # Poll until TERMINATED (max 30 min)
           for i in $(seq 1 60); do
-            STATE=$(databricks runs get --run-id $RUN_ID --output json \
-              | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['state']['life_cycle_state'])")
-            echo "  Attempt $i: state=$STATE"
-            if [ "$STATE" == "TERMINATED" ]; then
-              RESULT=$(databricks runs get --run-id $RUN_ID --output json \
-                | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['state']['result_state'])")
+            STATE=$(databricks runs get "$RUN_ID" --output json \
+              | python3 -c "import sys,json; print(json.load(sys.stdin)['state']['life_cycle_state'])")
+            echo "  Attempt $i: $STATE"
+            if [ "$STATE" = "TERMINATED" ]; then
+              RESULT=$(databricks runs get "$RUN_ID" --output json \
+                | python3 -c "import sys,json; print(json.load(sys.stdin)['state']['result_state'])")
               echo "Final result: $RESULT"
-              if [ "$RESULT" != "SUCCESS" ]; then
-                echo "Smoke test FAILED. Deployment halted."
-                exit 1
-              fi
+              [ "$RESULT" = "SUCCESS" ] || { echo "Smoke test FAILED — deployment halted."; exit 1; }
               break
             fi
             sleep 30
           done
 
       # -----------------------------------------------------------------------
-      # Promote models from Staging → Production if smoke test passes
+      # Promote ML models — Unity Catalog uses @champion alias, not stages.
+      # Old client.transition_model_version_stage() does not work with UC.
       # -----------------------------------------------------------------------
       - name: Promote ML Models
         run: |
+          pip install mlflow databricks-sdk --quiet
           python3 << 'EOF'
-          import mlflow
-          from mlflow import MlflowClient
-          import os
+import mlflow
+from mlflow import MlflowClient
+import os
 
-          mlflow.set_tracking_uri(os.environ["DATABRICKS_HOST"])
-          mlflow.set_registry_uri("databricks-uc")
-          client = MlflowClient()
+mlflow.set_tracking_uri(os.environ["DATABRICKS_HOST"])
+mlflow.set_registry_uri("databricks-uc")
+client = MlflowClient()
 
-          CATALOG = "retail_prod"
-          models = [
-              f"{CATALOG}.ml.customer_segmentation",
-              f"{CATALOG}.ml.demand_forecast_prophet",
-          ]
+CATALOG = "retail_prod"
+models = [
+    f"{CATALOG}.ml.customer_segmentation",
+    f"{CATALOG}.ml.demand_forecast_prophet",
+]
 
-          for model_name in models:
-              versions = client.search_model_versions(f"name='{model_name}'")
-              staging = [v for v in versions if v.current_stage == "Staging"]
-              if staging:
-                  latest = max(staging, key=lambda v: int(v.version))
-                  client.transition_model_version_stage(
-                      name=model_name,
-                      version=latest.version,
-                      stage="Production",
-                      archive_existing_versions=True,
-                  )
-                  print(f"Promoted {model_name} v{latest.version} to Production.")
-              else:
-                  print(f"No Staging version for {model_name} — skipping promotion.")
-          EOF
+for model_name in models:
+    versions = client.search_model_versions(f"name='{model_name}'")
+    if not versions:
+        print(f"No versions found for {model_name} — skipping.")
+        continue
+    latest = max(versions, key=lambda v: int(v.version))
+    client.set_registered_model_alias(model_name, "champion", latest.version)
+    print(f"Set @champion alias → {model_name} v{latest.version}")
+EOF
 
       - name: Deployment Complete
         run: echo "Deployment to prod completed successfully."
