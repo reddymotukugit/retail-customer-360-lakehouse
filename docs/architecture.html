@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f5f5; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; }
+  .page { background: white; width: 1300px; margin: 0 auto; padding: 30px; border: 1px solid #ddd; }
+  .title { text-align: center; font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .subtitle { text-align: center; font-size: 12px; color: #666; margin-bottom: 24px; }
+  
+  .diagram { display: flex; gap: 0; align-items: stretch; position: relative; }
+  
+  /* Zone containers */
+  .zone { border-radius: 8px; padding: 12px; position: relative; flex-shrink: 0; }
+  .zone-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; }
+  
+  .zone-onprem { background: #f0f4f8; border: 2px solid #8a9bb0; width: 160px; }
+  .zone-onprem .zone-label { color: #4a5568; }
+  
+  .zone-azure { background: #f0f7ff; border: 2px solid #0078D4; flex: 1; margin: 0 8px; }
+  .zone-azure .zone-label { color: #0078D4; }
+  
+  .azure-inner { display: flex; gap: 8px; align-items: flex-start; }
+  
+  .zone-cicd { background: #f5f0ff; border: 2px dashed #6b21a8; width: 155px; }
+  .zone-cicd .zone-label { color: #6b21a8; }
+
+  /* Service cards */
+  .svc { background: white; border: 1.5px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; position: relative; }
+  .svc:last-child { margin-bottom: 0; }
+  .svc-icon { width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; }
+  .svc-name { font-size: 11px; font-weight: 700; color: #1a1a1a; line-height: 1.3; }
+  .svc-detail { font-size: 9.5px; color: #64748b; margin-top: 2px; line-height: 1.4; }
+  .svc-tag { display: inline-block; font-size: 8.5px; padding: 1px 5px; border-radius: 10px; margin-top: 3px; font-weight: 600; }
+
+  /* ADF zone */
+  .zone-adf { background: #fff5fb; border: 1.5px solid #ec4899; border-radius: 6px; padding: 10px; width: 180px; }
+  .zone-adf .zone-label { color: #be185d; font-size: 9px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* Storage zone */
+  .zone-storage { background: #faf5ff; border: 1.5px solid #9333ea; border-radius: 6px; padding: 10px; width: 155px; }
+  .zone-storage .zone-label { color: #7e22ce; font-size: 9px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* Databricks zone */
+  .zone-dbx { background: #fff8f5; border: 1.5px solid #FF3621; border-radius: 6px; padding: 10px; flex: 1; }
+  .zone-dbx .zone-label { color: #FF3621; font-size: 9px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* Serving zone */
+  .zone-serve { background: #f0fdf4; border: 1.5px solid #16a34a; border-radius: 6px; padding: 10px; width: 150px; }
+  .zone-serve .zone-label { color: #15803d; font-size: 9px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* Lakehouse medallion bands */
+  .medallion { border-radius: 5px; padding: 7px 8px; margin-bottom: 6px; }
+  .bronze { background: #fff7ed; border-left: 3px solid #f97316; }
+  .silver { background: #f8fafc; border-left: 3px solid #94a3b8; }
+  .gold { background: #fefce8; border-left: 3px solid #eab308; }
+  .ml { background: #fdf4ff; border-left: 3px solid #a855f7; }
+  .medallion-title { font-size: 9.5px; font-weight: 700; margin-bottom: 2px; }
+  .bronze .medallion-title { color: #c2410c; }
+  .silver .medallion-title { color: #475569; }
+  .gold .medallion-title { color: #854d0e; }
+  .ml .medallion-title { color: #7e22ce; }
+  .medallion-detail { font-size: 8.5px; color: #64748b; line-height: 1.5; }
+
+  /* Arrows between zones */
+  .arrow-wrap { display: flex; align-items: center; justify-content: center; padding: 0 2px; align-self: center; flex-direction: column; gap: 3px; }
+  .arrow-line { width: 24px; height: 2px; background: #94a3b8; position: relative; }
+  .arrow-line::after { content: ''; position: absolute; right: -5px; top: -4px; border: 5px solid transparent; border-left-color: #94a3b8; }
+  .arrow-label { font-size: 8px; color: #64748b; text-align: center; white-space: nowrap; }
+
+  /* Icon colors */
+  .ic-sql { background: #e8f4fd; color: #0078D4; font-size: 13px; }
+  .ic-shir { background: #e8f4fd; color: #0078D4; font-size: 11px; }
+  .ic-adf { background: #fce7f3; color: #db2777; font-size: 13px; }
+  .ic-adls { background: #f3e8ff; color: #9333ea; font-size: 13px; }
+  .ic-kv { background: #fef3c7; color: #d97706; font-size: 13px; }
+  .ic-dbx { background: #fff1f0; color: #FF3621; font-size: 11px; }
+  .ic-sql2 { background: #ecfdf5; color: #16a34a; font-size: 12px; }
+  .ic-pbi { background: #fef9c3; color: #ca8a04; font-size: 12px; }
+  .ic-gh { background: #f3f4f6; color: #374151; font-size: 12px; }
+  .ic-tf { background: #ede9fe; color: #7c3aed; font-size: 11px; }
+
+  .badge { font-size: 8px; padding: 1px 5px; border-radius: 10px; font-weight: 600; display: inline-block; margin-top: 2px; }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-blue { background: #dbeafe; color: #1d4ed8; }
+  .badge-orange { background: #ffedd5; color: #c2410c; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  .legend { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; justify-content: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #64748b; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="title">Retail Customer 360 &amp; Demand Forecasting — Lakehouse Architecture</div>
+  <div class="subtitle">Azure Data Factory · ADLS Gen2 · Azure Databricks · Unity Catalog · Power BI · GitHub Actions</div>
+
+  <div class="diagram">
+
+    <!-- ON-PREMISES -->
+    <div class="zone zone-onprem">
+      <div class="zone-label">🖥 On-Premises</div>
+
+      <div class="svc">
+        <div class="svc-icon ic-sql">🗄</div>
+        <div class="svc-name">SQL Server 2022</div>
+        <div class="svc-detail">Azure VM · Express<br>transactions · customers<br>products</div>
+        <span class="badge badge-blue">~1 M rows</span>
+      </div>
+
+      <div style="text-align:center; font-size:10px; color:#94a3b8; margin:4px 0;">↓</div>
+
+      <div class="svc">
+        <div class="svc-icon ic-shir">🔗</div>
+        <div class="svc-name">Self-Hosted IR</div>
+        <div class="svc-detail">Bridges on-prem<br>network to ADF<br>via HTTPS tunnel</div>
+      </div>
+    </div>
+
+    <!-- ARROW 1 -->
+    <div class="arrow-wrap">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">HTTPS</div>
+    </div>
+
+    <!-- AZURE CLOUD -->
+    <div class="zone zone-azure">
+      <div class="zone-label">☁ Microsoft Azure — australiaeast</div>
+
+      <div class="azure-inner">
+
+        <!-- ADF -->
+        <div class="zone-adf">
+          <div class="zone-label">Azure Data Factory</div>
+
+          <div class="svc">
+            <div class="svc-icon ic-adf">⚡</div>
+            <div class="svc-name">pl_ingest_transactions</div>
+            <div class="svc-detail">Watermark incremental<br>copy · 94 s · 1 M rows</div>
+            <span class="badge badge-orange">Incremental</span>
+          </div>
+
+          <div class="svc">
+            <div class="svc-icon ic-adf">⚡</div>
+            <div class="svc-name">pl_ingest_customers</div>
+            <div class="svc-detail">Full load · daily · 37 s</div>
+            <span class="badge badge-blue">Full Load</span>
+          </div>
+
+          <div class="svc">
+            <div class="svc-icon ic-adf">⚡</div>
+            <div class="svc-name">pl_ingest_products</div>
+            <div class="svc-detail">Full load · daily · 36 s</div>
+            <span class="badge badge-blue">Full Load</span>
+          </div>
+        </div>
+
+        <!-- ARROW 2 -->
+        <div class="arrow-wrap">
+          <div class="arrow-line"></div>
+          <div class="arrow-label">Parquet</div>
+        </div>
+
+        <!-- STORAGE -->
+        <div class="zone-storage">
+          <div class="zone-label">ADLS Gen2</div>
+
+          <div class="svc">
+            <div class="svc-icon ic-adls">🗂</div>
+            <div class="svc-name">stretaillhdev</div>
+            <div class="svc-detail">bronze/ container<br>Raw Parquet<br>landing zone</div>
+            <span class="badge badge-purple">Delta Lake</span>
+          </div>
+
+          <div style="height:8px"></div>
+
+          <div class="svc">
+            <div class="svc-icon ic-kv">🔑</div>
+            <div class="svc-name">Key Vault</div>
+            <div class="svc-detail">kv-retaillh-dev<br>storage key<br>SQL password</div>
+          </div>
+        </div>
+
+        <!-- ARROW 3 -->
+        <div class="arrow-wrap">
+          <div class="arrow-line"></div>
+          <div class="arrow-label">cloudFiles</div>
+        </div>
+
+        <!-- DATABRICKS -->
+        <div class="zone-dbx">
+          <div class="zone-label">⚡ Azure Databricks — Unity Catalog: retail_prod</div>
+
+          <div style="display:flex; gap:8px; align-items:flex-start;">
+            <!-- Lakeflow pipeline -->
+            <div style="flex:1;">
+              <div style="font-size:9px; font-weight:700; color:#FF3621; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px;">Lakeflow Declarative Pipeline · ~4 min</div>
+
+              <div style="font-size:9px; color:#64748b; margin-bottom:5px;">Auto Loader (cloudFiles stream)</div>
+
+              <div class="medallion bronze">
+                <div class="medallion-title">🟠 Bronze Layer</div>
+                <div class="medallion-detail">raw_transactions · raw_customers · raw_products<br>Append-only · Schema enforcement · _quarantine_*</div>
+              </div>
+              <div style="text-align:center; font-size:10px; color:#94a3b8;">↓</div>
+              <div class="medallion silver">
+                <div class="medallion-title">⬜ Silver Layer</div>
+                <div class="medallion-detail">Transactions: line_total · cancel flag · quality checks<br>Customers: email validation · deduplication<br>Products: slow-mover flag · orphan SKU</div>
+              </div>
+              <div style="text-align:center; font-size:10px; color:#94a3b8;">↓</div>
+              <div class="medallion gold">
+                <div class="medallion-title">🟡 Gold Layer</div>
+                <div class="medallion-detail">customer_360 (RFM scores) · daily_kpis<br>revenue · AOV · cancel rate · demand_forecast</div>
+              </div>
+            </div>
+
+            <!-- ML -->
+            <div style="width:185px;">
+              <div style="font-size:9px; font-weight:700; color:#7e22ce; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px;">ML Jobs · Weekly · Serverless · ~7 min</div>
+
+              <div class="medallion ml">
+                <div class="medallion-title">segmentation.py</div>
+                <div class="medallion-detail">K-Means K=4<br>Champions · Loyal<br>At Risk · Lost<br>Silhouette → MLflow</div>
+              </div>
+              <div style="text-align:center; font-size:10px; color:#94a3b8;">↓</div>
+              <div class="medallion ml">
+                <div class="medallion-title">demand_forecast.py</div>
+                <div class="medallion-detail">Prophet · top 50 SKUs<br>12-week horizon<br>MAE + MAPE → MLflow</div>
+              </div>
+              <div style="text-align:center; font-size:10px; color:#94a3b8;">↓</div>
+              <div class="medallion ml" style="border-left-color:#16a34a; background:#f0fdf4;">
+                <div class="medallion-title" style="color:#15803d;">model_validation.py</div>
+                <div class="medallion-detail">Metric threshold check<br>@champion alias<br>Unity Catalog registry</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARROW 4 -->
+        <div class="arrow-wrap">
+          <div class="arrow-line"></div>
+          <div class="arrow-label">SQL endpoint</div>
+        </div>
+
+        <!-- SERVING -->
+        <div class="zone-serve">
+          <div class="zone-label">Serving Layer</div>
+
+          <div class="svc">
+            <div class="svc-icon ic-sql2">▦</div>
+            <div class="svc-name">Databricks SQL</div>
+            <div class="svc-detail">Serverless warehouse<br>customer_360<br>daily_kpis<br>demand_forecast</div>
+          </div>
+
+          <div style="text-align:center; font-size:10px; color:#94a3b8; margin:4px 0;">↓</div>
+
+          <div class="svc">
+            <div class="svc-icon ic-pbi">📊</div>
+            <div class="svc-name">Power BI</div>
+            <div class="svc-detail">DirectQuery<br>Live dashboards<br>No import needed</div>
+            <span class="badge badge-green">DirectQuery</span>
+          </div>
+        </div>
+
+      </div><!-- azure-inner -->
+    </div><!-- zone-azure -->
+
+    <!-- CI/CD -->
+    <div style="display:flex; flex-direction:column; gap:0; margin-left:8px;">
+      <div class="zone zone-cicd" style="height:100%;">
+        <div class="zone-label">🔄 CI/CD</div>
+
+        <div class="svc">
+          <div class="svc-icon ic-gh">⚙</div>
+          <div class="svc-name">GitHub Actions</div>
+          <div class="svc-detail">PR → plan<br>merge → apply<br>dev→prod on tag</div>
+        </div>
+
+        <div style="text-align:center; font-size:10px; color:#94a3b8; margin:4px 0;">↕</div>
+
+        <div class="svc">
+          <div class="svc-icon ic-tf">🏗</div>
+          <div class="svc-name">Terraform</div>
+          <div class="svc-detail">ADLS · ADF<br>Key Vault<br>Cluster policy</div>
+        </div>
+
+        <div style="text-align:center; font-size:10px; color:#94a3b8; margin:4px 0;">↕</div>
+
+        <div class="svc">
+          <div class="svc-icon ic-dbx">◆</div>
+          <div class="svc-name">DAB Bundle</div>
+          <div class="svc-detail">databricks.yml<br>dev + prod targets<br>Smoke tests</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- diagram -->
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#f97316;"></div> Bronze — Raw</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#94a3b8;"></div> Silver — Cleansed</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#eab308;"></div> Gold — Aggregated</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a855f7;"></div> ML — Unity Catalog MLflow</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0078D4;"></div> Azure PaaS</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FF3621;"></div> Databricks</div>
+  </div>
+</div>
+</body>
+</html>
